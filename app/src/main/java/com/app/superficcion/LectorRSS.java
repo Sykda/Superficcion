@@ -64,7 +64,7 @@ public class LectorRSS extends AsyncTask<Void, Void, Void>{
             InputStream inputStream = connection.getInputStream();
             DocumentBuilderFactory builderFactory=DocumentBuilderFactory.newInstance();
             DocumentBuilder builder = builderFactory.newDocumentBuilder();
-            Document xmlDoc = builder.parse(inputStream);
+            Document xmlDoc = builder.parse(inputStream); //Parsear
             return xmlDoc;
         }catch (Exception e){
             e.printStackTrace();

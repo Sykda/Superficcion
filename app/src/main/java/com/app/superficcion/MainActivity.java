@@ -13,5 +13,7 @@ public class MainActivity extends AppCompatActivity {
 
         LectorRSS lectorRSS = new LectorRSS(getApplicationContext());
         lectorRSS.execute(); // Lanzamos el hilo.
+
+
     }
 }
