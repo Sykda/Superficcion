@@ -12,15 +12,16 @@
 
         <TextView
             android:id="@+id/tituloId"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
             android:layout_alignParentEnd="true"
             android:text="¿Cuándo llegará &#8216;Morbius&#8217; a Netflix y Disney Plus?"
+            android:textColor="@color/ColorTitulo"
             android:textSize="18sp"
             app:layout_constraintBottom_toTopOf="@+id/imageViewId"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -37,8 +38,8 @@
 
         <TextView
             android:id="@+id/descripcionId"
-            android:layout_width="369dp"
-            android:layout_height="175dp"
+            android:layout_width="371dp"
+            android:layout_height="115dp"
             android:layout_alignParentStart="true"
             android:layout_alignParentBottom="true"
             android:layout_marginStart="28dp"
@@ -46,6 +47,18 @@
             android:textSize="15sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/imageViewId" />
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Tue, 29 Mar 2022"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.96"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/descripcionId"
+            app:layout_constraintVertical_bias="1.0" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

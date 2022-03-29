@@ -82,7 +82,7 @@ public class LectorRSS extends AsyncTask<Void, Void, Void> {
                     Log.d("Titulo", noticia.getmTitulo());
                     Log.d("Link", noticia.getmEnlace());
                     Log.d("Descripcion", noticia.getmDescripcion());
-                    Log.d("Imagen", noticia.getmImagen());
+                   // Log.d("Imagen", noticia.getmImagen());
                     Log.d("Fecha", noticia.getmFecha());
                 }
             }
