@@ -2,8 +2,13 @@
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/cardViewNoticia"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:background="#3A3737"
+    android:layout_marginBottom="10dp"
+    android:layout_marginTop="10dp"
+    app:cardBackgroundColor="#535255"
     app:cardCornerRadius="25dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -19,7 +24,7 @@
             android:layout_alignParentEnd="true"
             android:gravity="center"
             android:text="¿Cuándo llegará &#8216;Morbius&#8217; a Netflix y Disney Plus?"
-            android:textColor="@color/ColorTitulo"
+            android:textColor="@color/white"
             android:textSize="18sp"
             app:autoSizeTextType="uniform"
             app:layout_constraintBottom_toTopOf="@+id/imageViewId"
@@ -47,6 +52,7 @@
             android:layout_alignParentBottom="true"
             android:layout_marginStart="28dp"
             android:text="Morbius es el siguiente gran estreno por parte de Sony, después de la exitosa Spider-Man: No Way Home. Tras su estreno en cines, Morbius, protagonizado por Jared Leto, llegará a las plataformas de streaming de Netflix y Disney Plus. Aquí te diremos cuándo podrás ir a ver Morbius al cine, y cuándo estará disponible en &#8230;"
+            android:textColor="#F8F5F5"
             android:textSize="15sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/imageViewId" />
@@ -56,6 +62,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Tue, 29 Mar 2022"
+            android:textColor="#FBFAFA"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.96"

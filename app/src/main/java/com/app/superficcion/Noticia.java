@@ -43,4 +43,5 @@ public class Noticia {
     public void setmFecha(String mFecha) {
         this.mFecha = mFecha;
     }
+
 }

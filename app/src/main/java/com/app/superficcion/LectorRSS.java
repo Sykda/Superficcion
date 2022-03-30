@@ -4,7 +4,11 @@ import android.content.Context;
 import android.os.AsyncTask;
 import android.util.Log;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
+
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -23,11 +27,14 @@ import javax.xml.parsers.DocumentBuilderFactory;
 public class LectorRSS extends AsyncTask<Void, Void, Void> {
 
     private Context context;
+    ArrayList<Noticia> noticias;
+    RecyclerView recyclerView;
     String direccion = "https://super-ficcion.com/feed/";
     URL url;
     private ProgressBar progressBar;
 
-    public LectorRSS(Context context) {
+    public LectorRSS(Context context, RecyclerView recyclerView) {
+        this.recyclerView=recyclerView;
         this.context = context;
         progressBar = new ProgressBar(context);
 
@@ -43,6 +50,9 @@ public class LectorRSS extends AsyncTask<Void, Void, Void> {
     protected void onPostExecute(Void aVoid) {
         super.onPostExecute(aVoid);
         progressBar.setVisibility(View.GONE);
+        AdapterNoticia adapterNoticia = new AdapterNoticia(noticias, context);
+        recyclerView.setLayoutManager(new LinearLayoutManager(context));
+        recyclerView.setAdapter(adapterNoticia);
     }
 
     @Override
@@ -54,7 +64,7 @@ public class LectorRSS extends AsyncTask<Void, Void, Void> {
     private void procesarXML(Document data) {
         //si hay doc me devuelve el log
         if (data != null) {
-            ArrayList<Noticia> noticias = new ArrayList<>();
+            noticias = new ArrayList<>();
             Element root = data.getDocumentElement();
             Node channel = root.getChildNodes().item(1);
             NodeList items = channel.getChildNodes();
@@ -84,10 +94,14 @@ public class LectorRSS extends AsyncTask<Void, Void, Void> {
                     Log.d("Descripcion", noticia.getmDescripcion());
                    // Log.d("Imagen", noticia.getmImagen());
                     Log.d("Fecha", noticia.getmFecha());
+
                 }
             }
         }
     }
+
+    //ImageView imageView=recyclerView.findViewById(R.id.imageViewId);
+    //imageView.setImageResource(R.drawable.img);
 
     public Document obtenerDatos() {
         try {
