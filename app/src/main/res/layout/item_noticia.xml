@@ -35,14 +35,14 @@
 
         <ImageView
             android:id="@+id/imageViewId"
-            android:layout_width="wrap_content"
-            android:layout_height="263dp"
+            android:layout_width="376dp"
+            android:layout_height="226dp"
             android:layout_marginTop="16dp"
+            android:src="@drawable/img"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tituloId"
-            app:srcCompat="@drawable/img" />
+            app:layout_constraintTop_toBottomOf="@+id/tituloId" />
 
         <TextView
             android:id="@+id/descripcionId"
@@ -50,10 +50,13 @@
             android:layout_height="115dp"
             android:layout_alignParentStart="true"
             android:layout_alignParentBottom="true"
-            android:layout_marginStart="28dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="12dp"
             android:text="Morbius es el siguiente gran estreno por parte de Sony, después de la exitosa Spider-Man: No Way Home. Tras su estreno en cines, Morbius, protagonizado por Jared Leto, llegará a las plataformas de streaming de Netflix y Disney Plus. Aquí te diremos cuándo podrás ir a ver Morbius al cine, y cuándo estará disponible en &#8230;"
             android:textColor="#F8F5F5"
             android:textSize="15sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/imageViewId" />
 

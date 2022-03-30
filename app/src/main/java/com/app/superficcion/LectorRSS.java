@@ -100,9 +100,6 @@ public class LectorRSS extends AsyncTask<Void, Void, Void> {
         }
     }
 
-    //ImageView imageView=recyclerView.findViewById(R.id.imageViewId);
-    //imageView.setImageResource(R.drawable.img);
-
     public Document obtenerDatos() {
         try {
             //Peticion a la URL, leemos  la peticion la procesamos y la guardamos en un doc.
