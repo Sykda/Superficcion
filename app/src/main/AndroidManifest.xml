@@ -12,7 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Material3.Dark.NoActionBar" >
         <activity
-            android:name=".WebView"
+            android:name=".MyWebView"
             android:exported="false" />
         <activity
             android:name=".MainActivity"
