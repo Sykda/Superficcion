@@ -20,7 +20,7 @@ public class MyWebView extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_web_view);
 
-        wevViewToolbar =  findViewById(R.id.webViewToolbar);
+        wevViewToolbar = findViewById(R.id.webViewToolbar);
         setSupportActionBar(wevViewToolbar);
         final ActionBar ab = getSupportActionBar();
         ab.setDisplayHomeAsUpEnabled(true);
@@ -31,7 +31,7 @@ public class MyWebView extends AppCompatActivity {
         String url = bundle.getString("Enlace");
 
         WebSettings webSettings = webView.getSettings();
-        webSettings.setJavaScriptEnabled(false);
+        webSettings.setJavaScriptEnabled(true);
         webSettings.setLoadsImagesAutomatically(true);
 
         webView.addJavascriptInterface(new WebAppInterface(this), "Android");
@@ -51,5 +51,4 @@ public class MyWebView extends AppCompatActivity {
                 return super.onOptionsItemSelected(item);
         }
     }
-
 }

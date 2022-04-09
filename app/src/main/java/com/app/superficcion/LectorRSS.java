@@ -137,19 +137,19 @@ public class LectorRSS extends AsyncTask<Void, Void, Void> {
         String[] splitDate = string.split(" ");
         //Day
         if (splitDate[0].equalsIgnoreCase("Mon,")) {
-            splitDate[0] = "Lunes";
+            splitDate[0] = "Lunes,";
         } else if (splitDate[0].equalsIgnoreCase("Tue,")) {
-            splitDate[0] = "Martes";
+            splitDate[0] = "Martes,";
         } else if (splitDate[0].equalsIgnoreCase("Wen,")) {
-            splitDate[0] = "Miércoles";
+            splitDate[0] = "Miércoles,";
         } else if (splitDate[0].equalsIgnoreCase("Thu,")) {
-            splitDate[0] = "Jueves";
+            splitDate[0] = "Jueves,";
         } else if (splitDate[0].equalsIgnoreCase("Fri,")) {
-            splitDate[0] = "Viernes";
+            splitDate[0] = "Viernes,";
         } else if (splitDate[0].equalsIgnoreCase("Sat,")) {
-            splitDate[0] = "Sábado";
+            splitDate[0] = "Sábado,";
         } else if (splitDate[0].equalsIgnoreCase("Sun,")) {
-            splitDate[0] = "Domingo";
+            splitDate[0] = "Domingo,";
         }
         //Month
         if (splitDate[2].equalsIgnoreCase("Jan")) {
