@@ -4,7 +4,6 @@ import android.content.Context;
 import android.os.AsyncTask;
 import android.util.Log;
 import android.view.View;
-import android.widget.ImageView;
 import android.widget.ProgressBar;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -26,15 +25,15 @@ import javax.xml.parsers.DocumentBuilderFactory;
 //AsincTask crea un hilo nuevo.
 public class LectorRSS extends AsyncTask<Void, Void, Void> {
 
-    private Context context;
+    private final Context context;
     ArrayList<Noticia> noticias;
     RecyclerView recyclerView;
     String direccion = "https://super-ficcion.com/feed/";
     URL url;
-    private ProgressBar progressBar;
+    private final ProgressBar progressBar;
 
     public LectorRSS(Context context, RecyclerView recyclerView) {
-        this.recyclerView=recyclerView;
+        this.recyclerView = recyclerView;
         this.context = context;
         progressBar = new ProgressBar(context);
 
@@ -80,19 +79,24 @@ public class LectorRSS extends AsyncTask<Void, Void, Void> {
                         } else if (actual.getNodeName().equalsIgnoreCase("link")) {
                             noticia.setmEnlace(actual.getTextContent());
                         } else if (actual.getNodeName().equalsIgnoreCase("description")) {
-                            noticia.setmDescripcion(actual.getTextContent());
-                        } else if (actual.getNodeName().equalsIgnoreCase("enclosure")) {
-                            String mUrl = actual.getAttributes().item(0).getTextContent();
-                            noticia.setmImagen(mUrl);
+                            Node imagechild = actual.getFirstChild();
+                            String node = imagechild.getTextContent();
+
+                            String imagen = getImageFromDescription(node);
+                            noticia.setmImagen(imagen);
+
+                            String resume = getResumeFromDescription(node);
+                            noticia.setmDescripcion(resume);
                         } else if (actual.getNodeName().equalsIgnoreCase("pubDate")) {
                             noticia.setmFecha(actual.getTextContent());
                         }
                     }
                     noticias.add(noticia);
+                    //Mock
                     Log.d("Titulo", noticia.getmTitulo());
                     Log.d("Link", noticia.getmEnlace());
                     Log.d("Descripcion", noticia.getmDescripcion());
-                   // Log.d("Imagen", noticia.getmImagen());
+                    Log.d("Imagen", noticia.getmImagen());
                     Log.d("Fecha", noticia.getmFecha());
 
                 }
@@ -117,4 +121,17 @@ public class LectorRSS extends AsyncTask<Void, Void, Void> {
         }
     }
 
+    public String getImageFromDescription(String string) {
+        String[] splitSRC = string.split("src=");
+        String[] splitCLASS = splitSRC[1].split("class");
+        String[] noLineFeed = splitCLASS[0].split("\n");
+        return noLineFeed[0].replace("\"", "").replace("\"", "").replace("/></p>", "");
+    }
+
+    public String getResumeFromDescription(String string) {
+        String[] splitPar = string.split("<p>");
+        return splitPar[3];
+    }
 }
+
+

@@ -20,10 +20,7 @@ public class MainActivity extends AppCompatActivity {
 
         toolbar=findViewById(R.id.toolbar);
 
-
         recyclerView = findViewById(R.id.recycleView);
-
-
 
         LectorRSS lectorRSS = new LectorRSS(getApplicationContext(), recyclerView);
         lectorRSS.execute(); // Lanzamos el hilo.
