@@ -1,25 +1,30 @@
 package com.app.superficcion;
 
 import android.os.Bundle;
-import android.webkit.WebResourceResponse;
+import android.util.Log;
+import android.view.MenuItem;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
-import android.webkit.WebViewClient;
 
-import androidx.annotation.Nullable;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
-
-import java.util.HashMap;
-import java.util.Map;
+import androidx.appcompat.widget.Toolbar;
 
 public class MyWebView extends AppCompatActivity {
 
     WebView webView;
+    Toolbar wevViewToolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_web_view);
+
+        wevViewToolbar =  findViewById(R.id.webViewToolbar);
+        setSupportActionBar(wevViewToolbar);
+        final ActionBar ab = getSupportActionBar();
+        ab.setDisplayHomeAsUpEnabled(true);
+        ab.setDisplayShowTitleEnabled(false);
 
         webView = findViewById(R.id.webView);
         Bundle bundle = getIntent().getExtras();
@@ -31,6 +36,20 @@ public class MyWebView extends AppCompatActivity {
 
         webView.addJavascriptInterface(new WebAppInterface(this), "Android");
         webView.loadUrl(url);
+    }
+
+
+    //Boton "<-".
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home: //hago un case por si en un futuro agrego mas opciones
+                Log.i("ActionBar", "Atrás!");
+                finish();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 
 }

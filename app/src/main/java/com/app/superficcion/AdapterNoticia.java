@@ -38,9 +38,9 @@ public class AdapterNoticia extends RecyclerView.Adapter<AdapterNoticia.MyViewHo
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
 
         Noticia actual = noticias.get(position);
-        holder.mTitulo.setText(HtmlCompat.fromHtml(actual.getmTitulo(),HtmlCompat.FROM_HTML_MODE_LEGACY));
-        holder.mDescripcion.setText(HtmlCompat.fromHtml(formatearTexto(actual.getmDescripcion()),HtmlCompat.FROM_HTML_MODE_LEGACY));
-        holder.mFecha.setText(HtmlCompat.fromHtml(actual.getmFecha(),HtmlCompat.FROM_HTML_MODE_LEGACY));
+        holder.mTitulo.setText(HtmlCompat.fromHtml(actual.getmTitulo(), HtmlCompat.FROM_HTML_MODE_LEGACY));
+        holder.mDescripcion.setText(HtmlCompat.fromHtml(actual.getmDescripcion(), HtmlCompat.FROM_HTML_MODE_LEGACY));
+        holder.mFecha.setText(HtmlCompat.fromHtml(actual.getmFecha(), HtmlCompat.FROM_HTML_MODE_LEGACY));
 
         Picasso.get().load(actual.getmImagen()).into(holder.mImagen);
 
@@ -52,14 +52,6 @@ public class AdapterNoticia extends RecyclerView.Adapter<AdapterNoticia.MyViewHo
                 context.startActivity(intent);
             }
         });
-    }
-
-    private String formatearTexto(String s) {
-
-        String descripcionOriginal = s;
-        String[] partes = descripcionOriginal.split("</p>");
-
-        return partes[0];
     }
 
     @Override

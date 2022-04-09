@@ -26,11 +26,11 @@ import javax.xml.parsers.DocumentBuilderFactory;
 public class LectorRSS extends AsyncTask<Void, Void, Void> {
 
     private final Context context;
+    private final ProgressBar progressBar;
     ArrayList<Noticia> noticias;
     RecyclerView recyclerView;
     String direccion = "https://super-ficcion.com/feed/";
     URL url;
-    private final ProgressBar progressBar;
 
     public LectorRSS(Context context, RecyclerView recyclerView) {
         this.recyclerView = recyclerView;
@@ -88,7 +88,7 @@ public class LectorRSS extends AsyncTask<Void, Void, Void> {
                             String resume = getResumeFromDescription(node);
                             noticia.setmDescripcion(resume);
                         } else if (actual.getNodeName().equalsIgnoreCase("pubDate")) {
-                            noticia.setmFecha(actual.getTextContent());
+                            noticia.setmFecha(formatDate(actual.getTextContent()));
                         }
                     }
                     noticias.add(noticia);
@@ -130,7 +130,55 @@ public class LectorRSS extends AsyncTask<Void, Void, Void> {
 
     public String getResumeFromDescription(String string) {
         String[] splitPar = string.split("<p>");
-        return splitPar[3];
+        return splitPar[3].replace("</p>", "");
+    }
+
+    public String formatDate(String string) {
+        String[] splitDate = string.split(" ");
+        //Day
+        if (splitDate[0].equalsIgnoreCase("Mon,")) {
+            splitDate[0] = "Lunes";
+        } else if (splitDate[0].equalsIgnoreCase("Tue,")) {
+            splitDate[0] = "Martes";
+        } else if (splitDate[0].equalsIgnoreCase("Wen,")) {
+            splitDate[0] = "Miércoles";
+        } else if (splitDate[0].equalsIgnoreCase("Thu,")) {
+            splitDate[0] = "Jueves";
+        } else if (splitDate[0].equalsIgnoreCase("Fri,")) {
+            splitDate[0] = "Viernes";
+        } else if (splitDate[0].equalsIgnoreCase("Sat,")) {
+            splitDate[0] = "Sábado";
+        } else if (splitDate[0].equalsIgnoreCase("Sun,")) {
+            splitDate[0] = "Domingo";
+        }
+        //Month
+        if (splitDate[2].equalsIgnoreCase("Jan")) {
+            splitDate[2] = "Enero";
+        } else if (splitDate[2].equalsIgnoreCase("Feb")) {
+            splitDate[2] = "Febrero";
+        } else if (splitDate[2].equalsIgnoreCase("Mar")) {
+            splitDate[2] = "Marzo";
+        } else if (splitDate[2].equalsIgnoreCase("Apr")) {
+            splitDate[2] = "Abril";
+        } else if (splitDate[2].equalsIgnoreCase("May")) {
+            splitDate[2] = "Mayo";
+        } else if (splitDate[2].equalsIgnoreCase("Jun")) {
+            splitDate[2] = "Junio";
+        } else if (splitDate[2].equalsIgnoreCase("Jul")) {
+            splitDate[2] = "Julio";
+        } else if (splitDate[2].equalsIgnoreCase("Aug")) {
+            splitDate[2] = "Agosto";
+        } else if (splitDate[2].equalsIgnoreCase("Sep")) {
+            splitDate[2] = "Septiembre";
+        } else if (splitDate[2].equalsIgnoreCase("Oct")) {
+            splitDate[2] = "Octubre";
+        } else if (splitDate[2].equalsIgnoreCase("Nov")) {
+            splitDate[2] = "Noviembre";
+        } else if (splitDate[2].equalsIgnoreCase("Dec")) {
+            splitDate[2] = "Diciembre";
+        }
+
+        return splitDate[0] + " " + splitDate[1] + " " + splitDate[2] + " " + splitDate[3];
     }
 }
 
