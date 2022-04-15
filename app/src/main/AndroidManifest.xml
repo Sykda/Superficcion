@@ -14,9 +14,11 @@
         android:theme="@style/Theme.Material3.Dark.NoActionBar" >
         <activity
             android:name=".MyWebView"
+            android:windowSoftInputMode="adjustPan"
             android:exported="false" />
         <activity
             android:name=".MainActivity"
+            android:windowSoftInputMode="adjustPan"
             android:exported="true" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
