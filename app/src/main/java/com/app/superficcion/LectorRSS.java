@@ -25,18 +25,17 @@ public class LectorRSS extends AsyncTask<Void, Void, Void> implements SearchView
 
     private final Context context;
     private ArrayList<Noticia> noticias;
-    private RecyclerView recyclerView;
-    private String direccion = "https://super-ficcion.com/feed/";
+    private final RecyclerView recyclerView;
+    private final String direccion = "https://super-ficcion.com/feed/";
     private URL url;
     private AdapterNoticia adapterNoticia;
-    private SearchView searchView;
-    private String search;
+    private final SearchView searchView;
 
-    public LectorRSS(Context context, RecyclerView recyclerView, SearchView searchView, String search) {
+
+    public LectorRSS(Context context, RecyclerView recyclerView, SearchView searchView) {
         this.recyclerView = recyclerView;
         this.context = context;
         this.searchView = searchView;
-        this.search = search;
         initListener();
     }
 
@@ -217,6 +216,11 @@ public class LectorRSS extends AsyncTask<Void, Void, Void> implements SearchView
     private void initListener() {
         searchView.setOnQueryTextListener(this);
     }
+
+    private void initfilter(String s) {
+        adapterNoticia.categoryFilter(s);
+    }
+
 }
 
 

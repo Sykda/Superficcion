@@ -10,7 +10,7 @@ public class CheckNetwork {
     private static final String TAG = CheckNetwork.class.getSimpleName();
 
     public static boolean isInternetAvailable(Context context) {
-        NetworkInfo info = (NetworkInfo) ((ConnectivityManager)
+        NetworkInfo info = ((ConnectivityManager)
                 context.getSystemService(Context.CONNECTIVITY_SERVICE)).getActiveNetworkInfo();
 
         if (info == null) {

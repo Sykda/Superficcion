@@ -22,9 +22,9 @@ import java.util.stream.Collectors;
 
 public class AdapterNoticia extends RecyclerView.Adapter<AdapterNoticia.MyViewHolder> {
 
-    private ArrayList<Noticia> noticias;
-    private ArrayList<Noticia> originalItems;
-    private Context context;
+    private final ArrayList<Noticia> noticias;
+    private final ArrayList<Noticia> originalItems;
+    private final Context context;
 
 
     public AdapterNoticia(ArrayList<Noticia> noticias, Context context) {
@@ -71,6 +71,58 @@ public class AdapterNoticia extends RecyclerView.Adapter<AdapterNoticia.MyViewHo
         return noticias.size();
     }
 
+    public void filter(final String strSearch) {
+        if (strSearch.length() == 0) {
+            noticias.clear();
+            noticias.addAll(originalItems);
+        } else {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                noticias.clear();
+                List<Noticia> collect = originalItems.stream()
+                        .filter(i -> i.getmTitulo().toLowerCase().contains(strSearch))
+                        //.filter(i -> i.getmDescripcion().toLowerCase().contains(strSearch))
+                        //.filter(i -> i.getmCategoria().toLowerCase().contains(strSearch))
+                        .collect(Collectors.toList());
+
+                noticias.addAll(collect);
+            } else {
+                noticias.clear();
+                for (Noticia i : originalItems) {
+                    if (i.getmDescripcion().toLowerCase().contains(strSearch)) {
+                        noticias.add(i);
+                    }
+                }
+            }
+        }
+        notifyDataSetChanged();
+    }
+
+    public void categoryFilter(final String strSearch) {
+        if (strSearch.length() == 0) {
+            noticias.clear();
+            noticias.addAll(originalItems);
+        } else {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                noticias.clear();
+                List<Noticia> collect = originalItems.stream()
+                        //.filter(i -> i.getmTitulo().toLowerCase().contains(strSearch))
+                        //.filter(i -> i.getmDescripcion().toLowerCase().contains(strSearch))
+                        .filter(i -> i.getmCategoria().toLowerCase().contains(strSearch))
+                        .collect(Collectors.toList());
+
+                noticias.addAll(collect);
+            } else {
+                noticias.clear();
+                for (Noticia i : originalItems) {
+                    if (i.getmDescripcion().toLowerCase().contains(strSearch)) {
+                        noticias.add(i);
+                    }
+                }
+            }
+        }
+        notifyDataSetChanged();
+    }
+
     public class MyViewHolder extends RecyclerView.ViewHolder {
 
         TextView mTitulo, mDescripcion, mFecha, mCategoria;
@@ -86,34 +138,5 @@ public class AdapterNoticia extends RecyclerView.Adapter<AdapterNoticia.MyViewHo
             mCategoria = itemView.findViewById(R.id.categoriaId);
             cardView = itemView.findViewById(R.id.cardViewNoticia);
         }
-    }
-
-
-    public void filter(final String strSearch) {
-        if (strSearch.length() == 0) {
-            noticias.clear();
-            noticias.addAll(originalItems);
-        }
-        else {
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-                noticias.clear();
-                List<Noticia> collect = originalItems.stream()
-                        //.filter(i -> i.getmTitulo().toLowerCase().contains(strSearch))
-                        //.filter(i -> i.getmDescripcion().toLowerCase().contains(strSearch))
-                        .filter(i -> i.getmCategoria().toLowerCase().contains(strSearch))
-                        .collect(Collectors.toList());
-
-                noticias.addAll(collect);
-            }
-            else {
-                noticias.clear();
-                for (Noticia i : originalItems) {
-                    if (i.getmDescripcion().toLowerCase().contains(strSearch)) {
-                        noticias.add(i);
-                    }
-                }
-            }
-        }
-        notifyDataSetChanged();
     }
 }
