@@ -88,17 +88,11 @@ public class LectorRSS extends AsyncTask<Void, Void, Void> {
                             noticia.setmDescripcion(resume);
                         } else if (actual.getNodeName().equalsIgnoreCase("pubDate")) {
                             noticia.setmFecha(formatDate(actual.getTextContent()));
-                        } else if (actual.getNodeName().equalsIgnoreCase("category")) {
-                            ArrayList<String> categorias = new ArrayList<>();
-                            categorias.add(actual.getTextContent());
-                            noticia.setmCategoria(categorias.get(0));
-
-                            for (String w:
-                                 categorias) {
-                                System.out.println(w);
-                            }
-
                         }
+
+                        String categoria = itemChilds.item(9).getTextContent();
+                        noticia.setmCategoria(categoria);
+
                     }
                     noticias.add(noticia);
                     //Mock
@@ -135,12 +129,29 @@ public class LectorRSS extends AsyncTask<Void, Void, Void> {
         String[] splitSRC = string.split("src=");
         String[] splitCLASS = splitSRC[1].split("class");
         String[] noLineFeed = splitCLASS[0].split("\n");
-        return noLineFeed[0].replace("\"", "").replace("\"", "").replace("/></p>", "");
+        return noLineFeed[0]
+                .replace("\"", "")
+                .replace("\"", "")
+                .replace("/></p>", "");
     }
 
     public String getResumeFromDescription(String string) {
         String[] splitPar = string.split("<p>");
-        return splitPar[3].replace("</p>", "");
+        String resume = splitPar[3].replace("</p>", "");
+        String[] limitedWords = resume.split(" ");
+        ArrayList<String> only15 = new ArrayList<>();
+        for (String i :
+                limitedWords) {
+            if (only15.size() < 20) {
+                only15.add(i);
+            }
+        }
+        String str = String.join(" ", only15);
+
+        if (str.contains("list") || str.contains("paragraph")) {
+            return "¡¡Entra para ver la noticia!!";
+        }
+        return str + "...";
     }
 
     public String formatDate(String string) {

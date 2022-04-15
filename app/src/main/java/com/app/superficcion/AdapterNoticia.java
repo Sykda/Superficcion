@@ -3,12 +3,14 @@ package com.app.superficcion;
 import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 import androidx.core.text.HtmlCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -20,6 +22,7 @@ public class AdapterNoticia extends RecyclerView.Adapter<AdapterNoticia.MyViewHo
 
     ArrayList<Noticia> noticias;
     Context context;
+
 
     public AdapterNoticia(ArrayList<Noticia> noticias, Context context) {
         this.noticias = noticias;
@@ -41,10 +44,12 @@ public class AdapterNoticia extends RecyclerView.Adapter<AdapterNoticia.MyViewHo
         holder.mTitulo.setText(HtmlCompat.fromHtml(actual.getmTitulo(), HtmlCompat.FROM_HTML_MODE_LEGACY));
         holder.mDescripcion.setText(HtmlCompat.fromHtml(actual.getmDescripcion(), HtmlCompat.FROM_HTML_MODE_LEGACY));
         holder.mFecha.setText(HtmlCompat.fromHtml(actual.getmFecha(), HtmlCompat.FROM_HTML_MODE_LEGACY));
+        holder.mCategoria.setText(HtmlCompat.fromHtml(actual.getmCategoria(), HtmlCompat.FROM_HTML_MODE_LEGACY));
 
         Picasso.get().load(actual.getmImagen()).into(holder.mImagen);
 
-        holder.mImagen.setOnClickListener(new View.OnClickListener() {
+
+        holder.cardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(context, MyWebView.class);
@@ -52,6 +57,7 @@ public class AdapterNoticia extends RecyclerView.Adapter<AdapterNoticia.MyViewHo
                 context.startActivity(intent);
             }
         });
+
     }
 
     @Override
@@ -61,8 +67,9 @@ public class AdapterNoticia extends RecyclerView.Adapter<AdapterNoticia.MyViewHo
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
 
-        TextView mTitulo, mDescripcion, mFecha;
+        TextView mTitulo, mDescripcion, mFecha, mCategoria;
         ImageView mImagen;
+        CardView cardView;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -70,6 +77,8 @@ public class AdapterNoticia extends RecyclerView.Adapter<AdapterNoticia.MyViewHo
             mDescripcion = itemView.findViewById(R.id.descripcionId);
             mFecha = itemView.findViewById(R.id.fechaId);
             mImagen = itemView.findViewById(R.id.imageViewId);
+            mCategoria = itemView.findViewById(R.id.categoriaId);
+            cardView=itemView.findViewById(R.id.cardViewNoticia);
         }
     }
 }
