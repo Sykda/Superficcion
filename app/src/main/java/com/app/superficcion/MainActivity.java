@@ -17,7 +17,7 @@ public class MainActivity extends AppCompatActivity {
 
     private RecyclerView recyclerView;
     private Toolbar toolbar;
-    private TextView marvel, dc, starWars, fantasy, anime, comic;
+    private TextView todo, marvel, dc, starWars, fantasy, anime, comic;
     private SearchView searchView;
 
 
@@ -32,6 +32,7 @@ public class MainActivity extends AppCompatActivity {
 
 
         //Todas las referencias
+        todo=findViewById(R.id.tvTodo);
         marvel = findViewById(R.id.tvMarvel);
         dc = findViewById(R.id.tvDC);
         starWars = findViewById(R.id.tvStarwars);
@@ -49,45 +50,52 @@ public class MainActivity extends AppCompatActivity {
 
         lectorRSS.execute(); // Lanzamos el hilo.
 
+        todo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                lectorRSS.initCategoryfilter("");
+                Toast.makeText(MainActivity.this, "Filtrando por: TODO", Toast.LENGTH_SHORT).show();
+            }
+        });
         marvel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                lectorRSS.initfilter("marvel");
+                lectorRSS.initCategoryfilter("marvel");
                 Toast.makeText(MainActivity.this, "Filtrando por: MARVEL", Toast.LENGTH_SHORT).show();
             }
         });
         dc.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                lectorRSS.initfilter("dc");
+                lectorRSS.initCategoryfilter("dc");
                 Toast.makeText(MainActivity.this, "Filtrando por: DC", Toast.LENGTH_SHORT).show();
             }
         });
         starWars.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                lectorRSS.initfilter("star wars");
+                lectorRSS.initCategoryfilter("star wars");
                 Toast.makeText(MainActivity.this, "Filtrando por: STAR WARS", Toast.LENGTH_SHORT).show();
             }
         });
         fantasy.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                lectorRSS.initfilter("fantasía");
+                lectorRSS.initCategoryfilter("fantasía");
                 Toast.makeText(MainActivity.this, "Filtrando por: Fantasía y Ciencia Ficción", Toast.LENGTH_SHORT).show();
             }
         });
         anime.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                lectorRSS.initfilter("anime");
+                lectorRSS.initCategoryfilter("anime");
                 Toast.makeText(MainActivity.this, "Filtrando por: Anime", Toast.LENGTH_SHORT).show();
             }
         });
         comic.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                lectorRSS.initfilter("cómic");
+                lectorRSS.initCategoryfilter("cómic");
                 Toast.makeText(MainActivity.this, "Filtrando por: Comic", Toast.LENGTH_SHORT).show();
             }
         });

@@ -217,7 +217,7 @@ public class LectorRSS extends AsyncTask<Void, Void, Void> implements SearchView
         searchView.setOnQueryTextListener(this);
     }
 
-    public void initfilter(String s) {
+    public void initCategoryfilter(String s) {
         adapterNoticia.categoryFilter(s);
     }
 
