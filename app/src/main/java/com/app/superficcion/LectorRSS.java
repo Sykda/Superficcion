@@ -36,7 +36,6 @@ public class LectorRSS extends AsyncTask<Void, Void, Void> {
         this.recyclerView = recyclerView;
         this.context = context;
         progressBar = new ProgressBar(context);
-
     }
 
     @Override
@@ -89,6 +88,16 @@ public class LectorRSS extends AsyncTask<Void, Void, Void> {
                             noticia.setmDescripcion(resume);
                         } else if (actual.getNodeName().equalsIgnoreCase("pubDate")) {
                             noticia.setmFecha(formatDate(actual.getTextContent()));
+                        } else if (actual.getNodeName().equalsIgnoreCase("category")) {
+                            ArrayList<String> categorias = new ArrayList<>();
+                            categorias.add(actual.getTextContent());
+                            noticia.setmCategoria(categorias.get(0));
+
+                            for (String w:
+                                 categorias) {
+                                System.out.println(w);
+                            }
+
                         }
                     }
                     noticias.add(noticia);
@@ -98,6 +107,7 @@ public class LectorRSS extends AsyncTask<Void, Void, Void> {
                     Log.d("Descripcion", noticia.getmDescripcion());
                     Log.d("Imagen", noticia.getmImagen());
                     Log.d("Fecha", noticia.getmFecha());
+                    Log.d("Categoria", noticia.getmCategoria());
 
                 }
             }
@@ -177,7 +187,6 @@ public class LectorRSS extends AsyncTask<Void, Void, Void> {
         } else if (splitDate[2].equalsIgnoreCase("Dec")) {
             splitDate[2] = "Diciembre";
         }
-
         return splitDate[0] + " " + splitDate[1] + " " + splitDate[2] + " " + splitDate[3];
     }
 }

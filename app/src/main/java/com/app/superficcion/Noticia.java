@@ -2,7 +2,7 @@ package com.app.superficcion;
 
 public class Noticia {
 
-    String mTitulo, mEnlace, mDescripcion, mImagen, mFecha;
+    String mTitulo, mEnlace, mDescripcion, mImagen, mFecha, mCategoria;
 
     public String getmTitulo() {
         return mTitulo;
@@ -44,4 +44,11 @@ public class Noticia {
         this.mFecha = mFecha;
     }
 
+    public String getmCategoria() {
+        return mCategoria;
+    }
+
+    public void setmCategoria(String mCategoria) {
+        this.mCategoria = mCategoria;
+    }
 }

@@ -72,6 +72,4 @@ public class AdapterNoticia extends RecyclerView.Adapter<AdapterNoticia.MyViewHo
             mImagen = itemView.findViewById(R.id.imageViewId);
         }
     }
-
-
 }
