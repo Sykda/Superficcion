@@ -1,7 +1,9 @@
 package com.app.superficcion;
 
 import android.Manifest;
+import android.app.Activity;
 import android.os.Bundle;
+import android.widget.Toast;
 import android.widget.Toolbar;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -20,21 +22,15 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        if(!CheckNetwork.isInternetAvailable(this)){
+            Toast.makeText(this,"Error: No Internet Connection",Toast.LENGTH_LONG).show();
+        }
+
         toolbar = findViewById(R.id.toolbar);
-
-        verificarPermisos();
-
         recyclerView = findViewById(R.id.recycleView);
 
         LectorRSS lectorRSS = new LectorRSS(getApplicationContext(), recyclerView);
         lectorRSS.execute(); // Lanzamos el hilo.
 
-
-    }
-
-    private void verificarPermisos(){
-        ContextCompat.checkSelfPermission(this, Manifest.permission.INTERNET);
-
-        requestPermissions(new String[]{Manifest.permission.INTERNET}, REQUEST_CODE);
     }
 }

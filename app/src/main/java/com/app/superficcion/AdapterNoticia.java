@@ -3,7 +3,6 @@ package com.app.superficcion;
 import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -53,6 +52,7 @@ public class AdapterNoticia extends RecyclerView.Adapter<AdapterNoticia.MyViewHo
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(context, MyWebView.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 intent.putExtra("Enlace", actual.getmEnlace());
                 context.startActivity(intent);
             }
@@ -78,7 +78,7 @@ public class AdapterNoticia extends RecyclerView.Adapter<AdapterNoticia.MyViewHo
             mFecha = itemView.findViewById(R.id.fechaId);
             mImagen = itemView.findViewById(R.id.imageViewId);
             mCategoria = itemView.findViewById(R.id.categoriaId);
-            cardView=itemView.findViewById(R.id.cardViewNoticia);
+            cardView = itemView.findViewById(R.id.cardViewNoticia);
         }
     }
 }
