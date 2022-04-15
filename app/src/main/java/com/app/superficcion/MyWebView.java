@@ -13,8 +13,8 @@ import androidx.appcompat.widget.Toolbar;
 
 public class MyWebView extends AppCompatActivity {
 
-    WebView webView;
-    Toolbar wevViewToolbar;
+    private WebView webView;
+    private Toolbar wevViewToolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

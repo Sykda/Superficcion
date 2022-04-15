@@ -143,5 +143,15 @@
         </LinearLayout>
     </HorizontalScrollView>
 
+    <SearchView
+        android:id="@+id/searchView"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="16dp"
+        android:background="#E11919"
+        android:backgroundTint="#DC1F1F"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_editor_absoluteX="32dp" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

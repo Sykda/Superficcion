@@ -2,9 +2,7 @@ package com.app.superficcion;
 
 import android.content.Context;
 import android.os.AsyncTask;
-import android.util.Log;
-import android.view.View;
-import android.widget.ProgressBar;
+import android.widget.SearchView;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -23,32 +21,34 @@ import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 
 //AsincTask crea un hilo nuevo.
-public class LectorRSS extends AsyncTask<Void, Void, Void> {
+public class LectorRSS extends AsyncTask<Void, Void, Void> implements SearchView.OnQueryTextListener {
 
     private final Context context;
-    private final ProgressBar progressBar;
-    ArrayList<Noticia> noticias;
-    RecyclerView recyclerView;
-    String direccion = "https://super-ficcion.com/feed/";
-    URL url;
+    private ArrayList<Noticia> noticias;
+    private RecyclerView recyclerView;
+    private String direccion = "https://super-ficcion.com/feed/";
+    private URL url;
+    private AdapterNoticia adapterNoticia;
+    private SearchView searchView;
+    private String search;
 
-    public LectorRSS(Context context, RecyclerView recyclerView) {
+    public LectorRSS(Context context, RecyclerView recyclerView, SearchView searchView, String search) {
         this.recyclerView = recyclerView;
         this.context = context;
-        progressBar = new ProgressBar(context);
+        this.searchView = searchView;
+        this.search = search;
+        initListener();
     }
 
     @Override
     protected void onPreExecute() {
-        progressBar.setVisibility(View.VISIBLE);
         super.onPreExecute();
     }
 
     @Override
     protected void onPostExecute(Void aVoid) {
         super.onPostExecute(aVoid);
-        progressBar.setVisibility(View.GONE);
-        AdapterNoticia adapterNoticia = new AdapterNoticia(noticias, context);
+        adapterNoticia = new AdapterNoticia(noticias, context);
         recyclerView.setLayoutManager(new LinearLayoutManager(context));
         recyclerView.setAdapter(adapterNoticia);
     }
@@ -97,12 +97,12 @@ public class LectorRSS extends AsyncTask<Void, Void, Void> {
                     noticias.add(noticia);
                     //Mock
                     /**
-                    Log.d("Titulo", noticia.getmTitulo());
-                    Log.d("Link", noticia.getmEnlace());
-                    Log.d("Descripcion", noticia.getmDescripcion());
-                    Log.d("Imagen", noticia.getmImagen());
-                    Log.d("Fecha", noticia.getmFecha());
-                    Log.d("Categoria", noticia.getmCategoria());
+                     Log.d("Titulo", noticia.getmTitulo());
+                     Log.d("Link", noticia.getmEnlace());
+                     Log.d("Descripcion", noticia.getmDescripcion());
+                     Log.d("Imagen", noticia.getmImagen());
+                     Log.d("Fecha", noticia.getmFecha());
+                     Log.d("Categoria", noticia.getmCategoria());
                      */
 
                 }
@@ -201,6 +201,21 @@ public class LectorRSS extends AsyncTask<Void, Void, Void> {
             splitDate[2] = "Diciembre";
         }
         return splitDate[0] + " " + splitDate[1] + " " + splitDate[2] + " " + splitDate[3];
+    }
+
+    @Override
+    public boolean onQueryTextSubmit(String s) {
+        return false;
+    }
+
+    @Override
+    public boolean onQueryTextChange(String s) {
+        adapterNoticia.filter(s);
+        return false;
+    }
+
+    private void initListener() {
+        searchView.setOnQueryTextListener(this);
     }
 }
 

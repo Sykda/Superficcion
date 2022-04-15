@@ -3,6 +3,9 @@ package com.app.superficcion;
 import android.Manifest;
 import android.app.Activity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.SearchView;
+import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.Toolbar;
 
@@ -13,9 +16,12 @@ import androidx.recyclerview.widget.RecyclerView;
 
 public class MainActivity extends AppCompatActivity {
 
-    RecyclerView recyclerView;
-    Toolbar toolbar;
-    int REQUEST_CODE = 200;
+    private RecyclerView recyclerView;
+    private Toolbar toolbar;
+    private TextView marvel, dc, starWars, fantasy, anime, comic;
+    private SearchView searchView;
+    private String search;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,11 +32,31 @@ public class MainActivity extends AppCompatActivity {
             Toast.makeText(this,"Error: No Internet Connection",Toast.LENGTH_LONG).show();
         }
 
+        //Todas las referencias
+        marvel=findViewById(R.id.tvMarvel);
+        dc=findViewById(R.id.tvDC);
+        starWars=findViewById(R.id.tvStarwars);
+        fantasy=findViewById(R.id.tvFantasy);
+        anime=findViewById(R.id.tvAnime);
+        comic=findViewById(R.id.tvComic);
+
+        searchView=findViewById(R.id.searchView);
         toolbar = findViewById(R.id.toolbar);
         recyclerView = findViewById(R.id.recycleView);
 
-        LectorRSS lectorRSS = new LectorRSS(getApplicationContext(), recyclerView);
+        marvel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                search="marvel";
+                Toast.makeText(MainActivity.this, "Funcionando saca: "+search, Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        LectorRSS lectorRSS = new LectorRSS(getApplicationContext(), recyclerView, searchView, search);
         lectorRSS.execute(); // Lanzamos el hilo.
 
     }
+
+
+
 }
