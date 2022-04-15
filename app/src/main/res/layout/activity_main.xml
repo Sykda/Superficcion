@@ -87,7 +87,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="5dp"
+            android:layout_margin="0dp"
             android:orientation="horizontal">
 
             <TextView
@@ -146,8 +146,6 @@
         android:id="@+id/searchView"
         android:layout_width="301dp"
         android:layout_height="44dp"
-        android:background="#00E11919"
-        android:backgroundTint="#DC1F1F"
         app:layout_constraintBottom_toTopOf="@+id/recycleView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
