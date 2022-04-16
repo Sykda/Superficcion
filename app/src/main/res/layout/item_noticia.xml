@@ -24,7 +24,7 @@
             android:layout_marginTop="16dp"
             android:layout_marginBottom="16dp"
             android:gravity="center"
-            android:text="¿Cuándo llegará &#8216;Morbius&#8217; a Netflix y Disney Plus?"
+            android:text="@string/cu_ndo_llegar_8216_morbius_8217_a_netflix_y_disney_plus"
             android:textColor="@color/white"
             android:textSize="18sp"
             app:autoSizeTextType="uniform"
@@ -45,7 +45,8 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tituloId" />
+            app:layout_constraintTop_toBottomOf="@+id/tituloId"
+            android:contentDescription="@string/lay_todo" />
 
         <TextView
             android:id="@+id/descripcionId"
@@ -54,7 +55,7 @@
             android:layout_alignParentStart="true"
             android:layout_alignParentBottom="true"
             android:layout_marginBottom="16dp"
-            android:text="Morbius es el siguiente gran estreno por parte de Sony, después de la exitosa Spider-Man: No Way Home. Tras su estreno en cines, Morbius, protagonizado por Jared Leto, llegará a las plataformas de streaming de Netflix y Disney Plus. Aquí te diremos cuándo podrás ir a ver Morbius al cine, y cuándo estará disponible en &#8230;"
+            android:text="@string/morbius_es_el_siguiente_gran_estreno_por_parte_de_sony_despu_s_de_la_exitosa_spider_man_no_way_home_tras_su_estreno_en_cines_morbius_protagonizado_por_jared_leto_llegar_a_las_plataformas_de_streaming_de_netflix_y_disney_plus_aqu_te_diremos_cu_ndo_podr_s_ir_a_ver_morbius_al_cine_y_cu_ndo_estar_disponible_en_8230"
             android:textColor="#F8F5F5"
             android:textSize="15sp"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -70,7 +71,7 @@
             android:layout_marginTop="8dp"
             android:layout_marginEnd="16dp"
             android:layout_marginBottom="8dp"
-            android:text="Tue, 29 Mar 2022"
+            android:text="@string/lay_date"
             android:textColor="#FBFAFA"
             app:layout_constraintBottom_toTopOf="@+id/descripcionId"
             app:layout_constraintEnd_toEndOf="parent"
@@ -88,7 +89,7 @@
             android:gravity="center"
             android:background="#0337F4"
             android:backgroundTint="@color/ColorTitulo"
-            android:text="TextView"
+            android:text="@string/lay_catego"
             android:textColor="#FBFBFB"
             android:textColorHighlight="#FAF7F7"
             android:textColorHint="#FAF8F8"

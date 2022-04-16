@@ -1,3 +1,19 @@
 <resources>
     <string name="app_name" formatted="true">Super-Ficción</string>
+    <string name="cu_ndo_llegar_8216_morbius_8217_a_netflix_y_disney_plus">¿Cuándo llegará ‘Morbius’ a Netflix y Disney Plus?</string>
+    <string name="morbius_es_el_siguiente_gran_estreno_por_parte_de_sony_despu_s_de_la_exitosa_spider_man_no_way_home_tras_su_estreno_en_cines_morbius_protagonizado_por_jared_leto_llegar_a_las_plataformas_de_streaming_de_netflix_y_disney_plus_aqu_te_diremos_cu_ndo_podr_s_ir_a_ver_morbius_al_cine_y_cu_ndo_estar_disponible_en_8230">Morbius es el siguiente gran estreno por parte de Sony, después de la exitosa Spider-Man: No Way Home. Tras su estreno en cines, Morbius, protagonizado por Jared Leto, llegará a las plataformas de streaming de Netflix y Disney Plus. Aquí te diremos cuándo podrás ir a ver Morbius al cine, y cuándo estará disponible en …</string>
+    <string name="lay_date">Tue, 29 Mar 2022</string>
+    <string name="lay_catego">TextView</string>
+    <string name="lay_todo">TODO</string>
+    <string name="op_todo">TODO</string>
+    <string name="op_marvel">MARVEL</string>
+    <string name="op_dc">DC</string>
+    <string name="op_star_wars">STAR WARS</string>
+    <string name="op_sci_fy_fantas_a">SCI-FY / FANTASÍA</string>
+    <string name="op_anime">ANIME</string>
+    <string name="op_c_mic">CÓMIC</string>
+    <string name="op_calendar">op_calendar</string>
+    <string name="op_home">op_home</string>
+    <string name="op_games">op_games</string>
+    <string name="op_more_read">op_more_read</string>
 </resources>

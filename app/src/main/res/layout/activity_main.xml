@@ -49,7 +49,7 @@
         app:layout_constraintTop_toBottomOf="@+id/toolbar">
 
         <LinearLayout
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="0dp"
             android:orientation="horizontal">
@@ -71,7 +71,7 @@
                         android:layout_margin="5dp"
                         android:gravity="center"
                         android:padding="5dp"
-                        android:text="TODO" />
+                        android:text="@string/op_todo" />
 
                 </RelativeLayout>
 
@@ -94,7 +94,7 @@
                         android:layout_margin="5dp"
                         android:gravity="center"
                         android:padding="5dp"
-                        android:text="MARVEL" />
+                        android:text="@string/op_marvel" />
 
                 </RelativeLayout>
 
@@ -117,7 +117,7 @@
                         android:layout_margin="5dp"
                         android:gravity="center"
                         android:padding="5dp"
-                        android:text="DC" />
+                        android:text="@string/op_dc" />
 
                 </RelativeLayout>
 
@@ -140,7 +140,7 @@
                         android:layout_margin="5dp"
                         android:gravity="center"
                         android:padding="5dp"
-                        android:text="STAR WARS" />
+                        android:text="@string/op_star_wars" />
 
                 </RelativeLayout>
 
@@ -163,7 +163,7 @@
                         android:layout_margin="5dp"
                         android:gravity="center"
                         android:padding="5dp"
-                        android:text="SCI-FY / FANTASÍA" />
+                        android:text="@string/op_sci_fy_fantas_a" />
 
                 </RelativeLayout>
 
@@ -186,7 +186,7 @@
                         android:layout_margin="5dp"
                         android:gravity="center"
                         android:padding="5dp"
-                        android:text="ANIME" />
+                        android:text="@string/op_anime" />
 
                 </RelativeLayout>
 
@@ -209,7 +209,7 @@
                         android:layout_margin="5dp"
                         android:gravity="center"
                         android:padding="5dp"
-                        android:text="CÓMIC" />
+                        android:text="@string/op_c_mic" />
 
                 </RelativeLayout>
 
@@ -244,6 +244,7 @@
             android:id="@+id/ibCalendar"
             android:layout_width="50dp"
             android:layout_height="50dp"
+            android:contentDescription="@string/op_calendar"
             android:padding="10dp"
             android:scaleType="fitCenter"
             android:src="@mipmap/ic_calendar"
@@ -252,12 +253,13 @@
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/ibMoreRead"
             app:layout_constraintTop_toTopOf="parent"
-            tools:ignore="SpeakableTextPresentCheck" />
+            tools:ignore="SpeakableTextPresentCheck,DuplicateSpeakableTextCheck" />
 
         <ImageButton
             android:id="@+id/ibHome"
             android:layout_width="50dp"
             android:layout_height="50dp"
+            android:contentDescription="@string/op_home"
             android:padding="10dp"
             android:scaleType="fitCenter"
             android:src="@mipmap/ic_home"
@@ -272,6 +274,7 @@
             android:id="@+id/ibPlay"
             android:layout_width="50dp"
             android:layout_height="50dp"
+            android:contentDescription="@string/op_games"
             android:padding="10dp"
             android:scaleType="fitCenter"
             android:src="@mipmap/ic_play"
@@ -286,6 +289,7 @@
             android:id="@+id/ibMoreRead"
             android:layout_width="50dp"
             android:layout_height="50dp"
+            android:contentDescription="@string/op_more_read"
             android:padding="10dp"
             android:scaleType="fitCenter"
             android:src="@mipmap/ic_top"
