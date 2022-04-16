@@ -80,8 +80,6 @@ public class AdapterNoticia extends RecyclerView.Adapter<AdapterNoticia.MyViewHo
                 noticias.clear();
                 List<Noticia> collect = originalItems.stream()
                         .filter(i -> i.getmTitulo().toLowerCase().contains(strSearch))
-                        //.filter(i -> i.getmDescripcion().toLowerCase().contains(strSearch))
-                        //.filter(i -> i.getmCategoria().toLowerCase().contains(strSearch))
                         .collect(Collectors.toList());
 
                 noticias.addAll(collect);
@@ -105,8 +103,6 @@ public class AdapterNoticia extends RecyclerView.Adapter<AdapterNoticia.MyViewHo
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
                 noticias.clear();
                 List<Noticia> collect = originalItems.stream()
-                        //.filter(i -> i.getmTitulo().toLowerCase().contains(strSearch))
-                        //.filter(i -> i.getmDescripcion().toLowerCase().contains(strSearch))
                         .filter(i -> i.getmCategoria().toLowerCase().contains(strSearch))
                         .collect(Collectors.toList());
 

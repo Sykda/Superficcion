@@ -1,9 +1,11 @@
 package com.app.superficcion;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.View;
+import android.widget.ImageButton;
 import android.widget.SearchView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -12,6 +14,8 @@ import android.widget.Toolbar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
 
 public class MainActivity extends AppCompatActivity {
 
@@ -19,6 +23,7 @@ public class MainActivity extends AppCompatActivity {
     private Toolbar toolbar;
     private TextView todo, marvel, dc, starWars, fantasy, anime, comic;
     private SearchView searchView;
+    private ImageButton home, play, moreRead, calendar;
 
 
     @Override
@@ -39,6 +44,10 @@ public class MainActivity extends AppCompatActivity {
         fantasy = findViewById(R.id.tvFantasy);
         anime = findViewById(R.id.tvAnime);
         comic = findViewById(R.id.tvComic);
+        home = findViewById(R.id.ibHome);
+        play = findViewById(R.id.ibPlay);
+        moreRead = findViewById(R.id.ibMoreRead);
+        calendar = findViewById(R.id.ibCalendar);
 
         searchView = findViewById(R.id.searchView);
         toolbar = findViewById(R.id.toolbar);
@@ -99,6 +108,31 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(MainActivity.this, "Filtrando por: Comic", Toast.LENGTH_SHORT).show();
             }
         });
+        home.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+               startActivity(new Intent(getApplicationContext(), MainActivity.class));
+            }
+        });
+        play.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), MyWebView.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                intent.putExtra("Enlace", "https://super-ficcion.com/test-y-trivias/");
+                startActivity(intent);
+            }
+        });
+        moreRead.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), MyWebView.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                intent.putExtra("Enlace", "https://super-ficcion.com/lo-mas-leido-super-ficcion/");
+                startActivity(intent);
+            }
+        });
+
     }
 
     @Override
