@@ -14,8 +14,6 @@ import android.widget.Toolbar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-
 
 public class MainActivity extends AppCompatActivity {
 
@@ -37,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
 
 
         //Todas las referencias
-        todo=findViewById(R.id.tvTodo);
+        todo = findViewById(R.id.tvTodo);
         marvel = findViewById(R.id.tvMarvel);
         dc = findViewById(R.id.tvDC);
         starWars = findViewById(R.id.tvStarwars);
@@ -52,7 +50,6 @@ public class MainActivity extends AppCompatActivity {
         searchView = findViewById(R.id.searchView);
         toolbar = findViewById(R.id.toolbar);
         recyclerView = findViewById(R.id.recycleView);
-
 
 
         LectorRSS lectorRSS = new LectorRSS(getApplicationContext(), recyclerView, searchView);
@@ -111,7 +108,7 @@ public class MainActivity extends AppCompatActivity {
         home.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-               startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                startActivity(new Intent(getApplicationContext(), MainActivity.class));
             }
         });
         play.setOnClickListener(new View.OnClickListener() {

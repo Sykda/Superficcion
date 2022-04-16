@@ -24,12 +24,12 @@ import javax.xml.parsers.DocumentBuilderFactory;
 public class LectorRSS extends AsyncTask<Void, Void, Void> implements SearchView.OnQueryTextListener {
 
     private final Context context;
-    private ArrayList<Noticia> noticias;
     private final RecyclerView recyclerView;
     private final String direccion = "https://super-ficcion.com/feed/";
+    private final SearchView searchView;
+    private ArrayList<Noticia> noticias;
     private URL url;
     private AdapterNoticia adapterNoticia;
-    private final SearchView searchView;
 
 
     public LectorRSS(Context context, RecyclerView recyclerView, SearchView searchView) {
