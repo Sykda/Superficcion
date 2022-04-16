@@ -3,8 +3,13 @@ package com.app.superficcion;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
+import android.webkit.ConsoleMessage;
+import android.webkit.JsPromptResult;
+import android.webkit.JsResult;
+import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
+import android.webkit.WebViewClient;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
@@ -33,16 +38,30 @@ public class MyWebView extends AppCompatActivity {
         String url = bundle.getString("Enlace");
 
         WebSettings webSettings = webView.getSettings();
+        webSettings.setDomStorageEnabled(true);
         webSettings.setJavaScriptEnabled(true);
         webSettings.setLoadsImagesAutomatically(true);
+        webSettings.setSupportZoom(true);
+
+
+        MyWebChromeClient myWebChromeClient = new MyWebChromeClient();
+        webView.setWebChromeClient(myWebChromeClient);
+        webView.clearCache(true);
+        webView.clearHistory();
+
+        webView.getSettings().setJavaScriptCanOpenWindowsAutomatically(true);
         if (WebViewFeature.isFeatureSupported(WebViewFeature.FORCE_DARK_STRATEGY)) {
             WebSettingsCompat.setForceDark(webView.getSettings(),WebSettingsCompat.FORCE_DARK_ON);
         }
 
-        webView.addJavascriptInterface(new WebAppInterface(this), "Android");
         webView.loadUrl(url);
 
+
+
+
     }
+
+
 
     //Boton "<-".
     @Override
