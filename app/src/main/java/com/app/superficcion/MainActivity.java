@@ -1,8 +1,11 @@
 package com.app.superficcion;
 
 import android.app.ActivityOptions;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.View;
@@ -24,6 +27,28 @@ public class MainActivity extends AppCompatActivity {
     private SearchView searchView;
     private ImageButton home, play, moreRead, calendar;
 
+
+    @Override
+    public void onBackPressed(){
+            AlertDialog.Builder builder= new AlertDialog.Builder(this);
+            builder.setMessage("¿Quieres salir de Super-Ficción?")
+                    .setPositiveButton("Si", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            Intent intent = new Intent(Intent.ACTION_MAIN);
+                            intent.addCategory(Intent.CATEGORY_HOME);
+                            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                            startActivity(intent);
+                        }
+                    })
+                    .setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            dialogInterface.dismiss();
+                        }
+                    });
+            builder.show();
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -139,6 +164,14 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+        calendar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(MainActivity.this, "En desarrollo...", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+
 
     }
 }
