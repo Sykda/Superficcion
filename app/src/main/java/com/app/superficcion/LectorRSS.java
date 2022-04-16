@@ -162,7 +162,7 @@ public class LectorRSS extends AsyncTask<Void, Void, Void> implements SearchView
             splitDate[0] = "Lunes,";
         } else if (splitDate[0].equalsIgnoreCase("Tue,")) {
             splitDate[0] = "Martes,";
-        } else if (splitDate[0].equalsIgnoreCase("Wen,")) {
+        } else if (splitDate[0].equalsIgnoreCase("Wed,")) {
             splitDate[0] = "Miércoles,";
         } else if (splitDate[0].equalsIgnoreCase("Thu,")) {
             splitDate[0] = "Jueves,";
