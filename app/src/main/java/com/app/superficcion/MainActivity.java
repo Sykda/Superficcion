@@ -61,6 +61,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 lectorRSS.initCategoryfilter("");
+                recyclerView.scrollToPosition(0);
                 Toast.makeText(MainActivity.this, "Filtrando por: TODO", Toast.LENGTH_SHORT).show();
             }
         });
@@ -68,6 +69,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 lectorRSS.initCategoryfilter("marvel");
+                recyclerView.scrollToPosition(0);
                 Toast.makeText(MainActivity.this, "Filtrando por: MARVEL", Toast.LENGTH_SHORT).show();
             }
         });
@@ -75,6 +77,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 lectorRSS.initCategoryfilter("dc");
+                recyclerView.scrollToPosition(0);
                 Toast.makeText(MainActivity.this, "Filtrando por: DC", Toast.LENGTH_SHORT).show();
             }
         });
@@ -82,6 +85,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 lectorRSS.initCategoryfilter("star wars");
+                recyclerView.scrollToPosition(0);
                 Toast.makeText(MainActivity.this, "Filtrando por: STAR WARS", Toast.LENGTH_SHORT).show();
             }
         });
@@ -89,6 +93,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 lectorRSS.initCategoryfilter("fantasía");
+                recyclerView.scrollToPosition(0);
                 Toast.makeText(MainActivity.this, "Filtrando por: Fantasía y Ciencia Ficción", Toast.LENGTH_SHORT).show();
             }
         });
@@ -96,6 +101,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 lectorRSS.initCategoryfilter("anime");
+                recyclerView.scrollToPosition(0);
                 Toast.makeText(MainActivity.this, "Filtrando por: Anime", Toast.LENGTH_SHORT).show();
             }
         });
@@ -103,12 +109,14 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 lectorRSS.initCategoryfilter("cómic");
-                Toast.makeText(MainActivity.this, "Filtrando por: Comic", Toast.LENGTH_SHORT).show();
+                recyclerView.scrollToPosition(0);
+                Toast.makeText(MainActivity.this, "Filtrando por: Cómic", Toast.LENGTH_SHORT).show();
             }
         });
         home.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                //recyclerView.scrollToPosition(0); // De esta forma no actualiza el contenido nuevo
                 startActivity(new Intent(getApplicationContext(), MainActivity.class),
                         ActivityOptions.makeSceneTransitionAnimation(MainActivity.this).toBundle());
             }
@@ -133,14 +141,4 @@ public class MainActivity extends AppCompatActivity {
         });
 
     }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.options_menu, menu);
-
-        return true;
-    }
-
-
 }

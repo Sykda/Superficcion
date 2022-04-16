@@ -26,7 +26,6 @@ public class AdapterNoticia extends RecyclerView.Adapter<AdapterNoticia.MyViewHo
     private final ArrayList<Noticia> originalItems;
     private final Context context;
 
-
     public AdapterNoticia(ArrayList<Noticia> noticias, Context context) {
         this.noticias = noticias;
         this.context = context;
@@ -116,6 +115,7 @@ public class AdapterNoticia extends RecyclerView.Adapter<AdapterNoticia.MyViewHo
                 }
             }
         }
+
         notifyDataSetChanged();
     }
 
@@ -135,4 +135,5 @@ public class AdapterNoticia extends RecyclerView.Adapter<AdapterNoticia.MyViewHo
             cardView = itemView.findViewById(R.id.cardViewNoticia);
         }
     }
+
 }
