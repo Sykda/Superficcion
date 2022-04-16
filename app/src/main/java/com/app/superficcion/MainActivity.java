@@ -1,5 +1,6 @@
 package com.app.superficcion;
 
+import android.app.ActivityOptions;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
@@ -108,7 +109,8 @@ public class MainActivity extends AppCompatActivity {
         home.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                startActivity(new Intent(getApplicationContext(), MainActivity.class),
+                        ActivityOptions.makeSceneTransitionAnimation(MainActivity.this).toBundle());
             }
         });
         play.setOnClickListener(new View.OnClickListener() {
