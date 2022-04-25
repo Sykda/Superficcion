@@ -30,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
     private SearchView searchView;
     private ImageButton home, play, moreRead, calendar;
 
-
+    //Programamos el comportamiento del botón "atrás" de android.
     @Override
     public void onBackPressed() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
@@ -58,6 +58,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        //Comprobamos si hay conexión a internet
         if (!CheckNetwork.isInternetAvailable(this)) {
             Toast.makeText(this, "Error: No Tienes Conexión a Internet", Toast.LENGTH_LONG).show();
             Intent intent = new Intent(Intent.ACTION_MAIN);
@@ -84,10 +85,11 @@ public class MainActivity extends AppCompatActivity {
         toolbar = findViewById(R.id.toolbar);
         recyclerView = findViewById(R.id.recycleView);
 
+        //Instancia y lanzamiento de la clase lectorRSS
         LectorRSS lectorRSS = new LectorRSS(getApplicationContext(), recyclerView, searchView);
+        lectorRSS.execute();
 
-        lectorRSS.execute(); // Lanzamos el hilo.
-
+        //Programamos el comportamiento de los botones
         todo.setOnClickListener((View v) -> {
                 lectorRSS.initCategoryfilter("");
                 recyclerView.scrollToPosition(0);
@@ -150,8 +152,5 @@ public class MainActivity extends AppCompatActivity {
         });
 
         calendar.setOnClickListener((View v) -> Toast.makeText(MainActivity.this, "En desarrollo...", Toast.LENGTH_SHORT).show());
-
-
-
     }
 }
