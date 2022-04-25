@@ -22,12 +22,14 @@ public class MyWebView extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_web_view);
 
+        //Definimos la barra de herramientas.
         wevViewToolbar = findViewById(R.id.webViewToolbar);
         setSupportActionBar(wevViewToolbar);
         final ActionBar ab = getSupportActionBar();
         ab.setDisplayHomeAsUpEnabled(true);
         ab.setDisplayShowTitleEnabled(false);
 
+        //Definimos el webview donde se refleja la web
         webView = findViewById(R.id.webView);
         Bundle bundle = getIntent().getExtras();
         String url = bundle.getString("Enlace");
@@ -43,11 +45,10 @@ public class MyWebView extends AppCompatActivity {
         if (WebViewFeature.isFeatureSupported(WebViewFeature.FORCE_DARK_STRATEGY)) {
             WebSettingsCompat.setForceDark(webView.getSettings(), WebSettingsCompat.FORCE_DARK_ON);
         }
-
         webView.loadUrl(url);
     }
 
-    //Boton "<-".
+    //Boton "<-" en la barra de herramientas
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {

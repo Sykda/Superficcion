@@ -31,7 +31,7 @@ public class LectorRSS extends AsyncTask<Void, Void, Void> implements SearchView
     private URL url;
     private AdapterNoticia adapterNoticia;
 
-
+    //Constructor
     public LectorRSS(Context context, RecyclerView recyclerView, SearchView searchView) {
         this.recyclerView = recyclerView;
         this.context = context;
@@ -58,6 +58,7 @@ public class LectorRSS extends AsyncTask<Void, Void, Void> implements SearchView
         return null;
     }
 
+    //Leemos el documento y sacamos la información de cada nodo
     private void procesarXML(Document data) {
         //si hay doc me devuelve el log
         if (data != null) {
@@ -94,31 +95,22 @@ public class LectorRSS extends AsyncTask<Void, Void, Void> implements SearchView
 
                     }
                     noticias.add(noticia);
-                    //Mock
-                    /**
-                     Log.d("Titulo", noticia.getmTitulo());
-                     Log.d("Link", noticia.getmEnlace());
-                     Log.d("Descripcion", noticia.getmDescripcion());
-                     Log.d("Imagen", noticia.getmImagen());
-                     Log.d("Fecha", noticia.getmFecha());
-                     Log.d("Categoria", noticia.getmCategoria());
-                     */
-
                 }
             }
         }
     }
 
+    //Leemos la web y la guardamos en un documento
     public Document obtenerDatos() {
         try {
             //Peticion a la URL, leemos  la peticion la procesamos y la guardamos en un doc.
             url = new URL(direccion);
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-            connection.setRequestMethod("GET");//tipo de petición
+            connection.setRequestMethod("GET");//Tipo de petición
             InputStream inputStream = connection.getInputStream();
             DocumentBuilderFactory builderFactory = DocumentBuilderFactory.newInstance();
             DocumentBuilder builder = builderFactory.newDocumentBuilder();
-            Document xmlDoc = builder.parse(inputStream); //Parsear
+            Document xmlDoc = builder.parse(inputStream); //Parseamos
             return xmlDoc;
         } catch (Exception e) {
             e.printStackTrace();
@@ -126,6 +118,7 @@ public class LectorRSS extends AsyncTask<Void, Void, Void> implements SearchView
         }
     }
 
+    //Sacamos la imagen desde la descripción
     public String getImageFromDescription(String string) {
         String[] splitSRC = string.split("src=");
         String[] splitCLASS = splitSRC[1].split("class");
@@ -136,6 +129,7 @@ public class LectorRSS extends AsyncTask<Void, Void, Void> implements SearchView
                 .replace("/></p>", "");
     }
 
+    //Sacamos el resumen desde la descripción
     public String getResumeFromDescription(String string) {
         String[] splitPar = string.split("<p>");
         String resume = splitPar[3].replace("</p>", "");
@@ -155,6 +149,7 @@ public class LectorRSS extends AsyncTask<Void, Void, Void> implements SearchView
         return str + "...";
     }
 
+    //Traducimos la fecha a español y nos quedamos con los datos que nos interesan
     public String formatDate(String string) {
         String[] splitDate = string.split(" ");
         //Day
@@ -202,6 +197,7 @@ public class LectorRSS extends AsyncTask<Void, Void, Void> implements SearchView
         return splitDate[0] + " " + splitDate[1] + " " + splitDate[2] + " " + splitDate[3];
     }
 
+    //Métodos para la búsqueda implementados por OnQueryTextListener
     @Override
     public boolean onQueryTextSubmit(String s) {
         return false;

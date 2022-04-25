@@ -26,6 +26,7 @@ public class AdapterNoticia extends RecyclerView.Adapter<AdapterNoticia.MyViewHo
     private final ArrayList<Noticia> originalItems;
     private final Context context;
 
+    //Constructor
     public AdapterNoticia(ArrayList<Noticia> noticias, Context context) {
         this.noticias = noticias;
         this.context = context;
@@ -70,6 +71,7 @@ public class AdapterNoticia extends RecyclerView.Adapter<AdapterNoticia.MyViewHo
         return noticias.size();
     }
 
+    //Filtro general
     public void filter(final String strSearch) {
         if (strSearch.length() == 0) {
             noticias.clear();
@@ -94,6 +96,8 @@ public class AdapterNoticia extends RecyclerView.Adapter<AdapterNoticia.MyViewHo
         notifyDataSetChanged();
     }
 
+    //Filtro para categorías
+    /** Juntar con el filtro general más adelante */
     public void categoryFilter(final String strSearch) {
         if (strSearch.length() == 0) {
             noticias.clear();
@@ -119,6 +123,7 @@ public class AdapterNoticia extends RecyclerView.Adapter<AdapterNoticia.MyViewHo
         notifyDataSetChanged();
     }
 
+    //Adaptador personalizado
     public class MyViewHolder extends RecyclerView.ViewHolder {
 
         TextView mTitulo, mDescripcion, mFecha, mCategoria;
