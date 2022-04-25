@@ -34,15 +34,12 @@ public class MyWebView extends AppCompatActivity {
 
         WebSettings webSettings = webView.getSettings();
         webSettings.setDomStorageEnabled(true);
-        webSettings.setJavaScriptEnabled(true);
+        webSettings.setJavaScriptEnabled(false);
         webSettings.setLoadsImagesAutomatically(true);
         webSettings.setSupportZoom(true);
 
-        MyWebChromeClient myWebChromeClient = new MyWebChromeClient();
-        webView.setWebChromeClient(myWebChromeClient);
         webView.clearCache(true);
         webView.clearHistory();
-        webView.getSettings().setJavaScriptCanOpenWindowsAutomatically(true);
         if (WebViewFeature.isFeatureSupported(WebViewFeature.FORCE_DARK_STRATEGY)) {
             WebSettingsCompat.setForceDark(webView.getSettings(), WebSettingsCompat.FORCE_DARK_ON);
         }

@@ -44,13 +44,13 @@ public class AdapterNoticia extends RecyclerView.Adapter<AdapterNoticia.MyViewHo
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
 
-        Noticia actual = noticias.get(position);
-        holder.mTitulo.setText(HtmlCompat.fromHtml(actual.getmTitulo(), HtmlCompat.FROM_HTML_MODE_LEGACY));
-        holder.mDescripcion.setText(HtmlCompat.fromHtml(actual.getmDescripcion(), HtmlCompat.FROM_HTML_MODE_LEGACY));
-        holder.mFecha.setText(HtmlCompat.fromHtml(actual.getmFecha(), HtmlCompat.FROM_HTML_MODE_LEGACY));
-        holder.mCategoria.setText(HtmlCompat.fromHtml(actual.getmCategoria(), HtmlCompat.FROM_HTML_MODE_LEGACY));
+        Noticia noticia = noticias.get(position);
+        holder.mTitulo.setText(HtmlCompat.fromHtml(noticia.getmTitulo(), HtmlCompat.FROM_HTML_MODE_LEGACY));
+        holder.mDescripcion.setText(HtmlCompat.fromHtml(noticia.getmDescripcion(), HtmlCompat.FROM_HTML_MODE_LEGACY));
+        holder.mFecha.setText(HtmlCompat.fromHtml(noticia.getmFecha(), HtmlCompat.FROM_HTML_MODE_LEGACY));
+        holder.mCategoria.setText(HtmlCompat.fromHtml(noticia.getmCategoria(), HtmlCompat.FROM_HTML_MODE_LEGACY));
 
-        Picasso.get().load(actual.getmImagen()).into(holder.mImagen);
+        Picasso.get().load(noticia.getmImagen()).into(holder.mImagen);
 
 
         holder.cardView.setOnClickListener(new View.OnClickListener() {
@@ -58,7 +58,7 @@ public class AdapterNoticia extends RecyclerView.Adapter<AdapterNoticia.MyViewHo
             public void onClick(View view) {
                 Intent intent = new Intent(context, MyWebView.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                intent.putExtra("Enlace", actual.getmEnlace());
+                intent.putExtra("Enlace", noticia.getmEnlace());
                 context.startActivity(intent);
             }
         });

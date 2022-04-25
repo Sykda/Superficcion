@@ -5,9 +5,6 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.KeyEvent;
-import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.SearchView;
@@ -29,25 +26,25 @@ public class MainActivity extends AppCompatActivity {
 
 
     @Override
-    public void onBackPressed(){
-            AlertDialog.Builder builder= new AlertDialog.Builder(this);
-            builder.setMessage("¿Quieres salir de Super-Ficción?")
-                    .setPositiveButton("Si", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialogInterface, int i) {
-                            Intent intent = new Intent(Intent.ACTION_MAIN);
-                            intent.addCategory(Intent.CATEGORY_HOME);
-                            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                            startActivity(intent);
-                        }
-                    })
-                    .setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialogInterface, int i) {
-                            dialogInterface.dismiss();
-                        }
-                    });
-            builder.show();
+    public void onBackPressed() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setMessage("¿Quieres salir de Super-Ficción?")
+                .setPositiveButton("Si", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        Intent intent = new Intent(Intent.ACTION_MAIN);
+                        intent.addCategory(Intent.CATEGORY_HOME);
+                        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                        startActivity(intent);
+                    }
+                })
+                .setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        dialogInterface.dismiss();
+                    }
+                });
+        builder.show();
     }
 
     @Override
@@ -57,6 +54,10 @@ public class MainActivity extends AppCompatActivity {
 
         if (!CheckNetwork.isInternetAvailable(this)) {
             Toast.makeText(this, "Error: No Internet Connection", Toast.LENGTH_LONG).show();
+            Intent intent = new Intent(Intent.ACTION_MAIN);
+            intent.addCategory(Intent.CATEGORY_HOME);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(intent);
         }
 
 
@@ -76,7 +77,6 @@ public class MainActivity extends AppCompatActivity {
         searchView = findViewById(R.id.searchView);
         toolbar = findViewById(R.id.toolbar);
         recyclerView = findViewById(R.id.recycleView);
-
 
         LectorRSS lectorRSS = new LectorRSS(getApplicationContext(), recyclerView, searchView);
 
@@ -172,6 +172,19 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
-
     }
+/** Nuevo metodo para el toast con imagen.
+ public void toastNoInternetConnection(String mensaje){
+ LayoutInflater layoutInflater = getLayoutInflater();
+ View view = layoutInflater.inflate(R.layout.layout, findViewById(R.id.elemento));
+ TextView textView = view.findViewById(R.id.elemento);
+ textView.setText(mensaje);
+
+ Toast toast = new Toast(getApplicationContext());
+ toast.setGravity(Gravity.CENTER, 0, 200);
+ toast.setDuration(Toast.LENGTH_LONG);
+ toast.setView(view);
+ toast.show();
+ }
+ */
 }
