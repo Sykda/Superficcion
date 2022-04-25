@@ -5,8 +5,12 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.SearchView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -14,6 +18,8 @@ import android.widget.Toolbar;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.squareup.picasso.Picasso;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -53,7 +59,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         if (!CheckNetwork.isInternetAvailable(this)) {
-            Toast.makeText(this, "Error: No Internet Connection", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "Error: No Tienes Conexión a Internet", Toast.LENGTH_LONG).show();
             Intent intent = new Intent(Intent.ACTION_MAIN);
             intent.addCategory(Intent.CATEGORY_HOME);
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
@@ -82,109 +88,70 @@ public class MainActivity extends AppCompatActivity {
 
         lectorRSS.execute(); // Lanzamos el hilo.
 
-        todo.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+        todo.setOnClickListener((View v) -> {
                 lectorRSS.initCategoryfilter("");
                 recyclerView.scrollToPosition(0);
                 Toast.makeText(MainActivity.this, "Filtrando por: TODO", Toast.LENGTH_SHORT).show();
-            }
         });
-        marvel.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+
+        marvel.setOnClickListener((View v) -> {
                 lectorRSS.initCategoryfilter("marvel");
                 recyclerView.scrollToPosition(0);
                 Toast.makeText(MainActivity.this, "Filtrando por: MARVEL", Toast.LENGTH_SHORT).show();
-            }
         });
-        dc.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+
+        dc.setOnClickListener((View v) -> {
                 lectorRSS.initCategoryfilter("dc");
                 recyclerView.scrollToPosition(0);
                 Toast.makeText(MainActivity.this, "Filtrando por: DC", Toast.LENGTH_SHORT).show();
-            }
         });
-        starWars.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+
+        starWars.setOnClickListener((View v) -> {
                 lectorRSS.initCategoryfilter("star wars");
                 recyclerView.scrollToPosition(0);
                 Toast.makeText(MainActivity.this, "Filtrando por: STAR WARS", Toast.LENGTH_SHORT).show();
-            }
         });
-        fantasy.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+
+        fantasy.setOnClickListener((View v) -> {
                 lectorRSS.initCategoryfilter("fantasía");
                 recyclerView.scrollToPosition(0);
                 Toast.makeText(MainActivity.this, "Filtrando por: Fantasía y Ciencia Ficción", Toast.LENGTH_SHORT).show();
-            }
         });
-        anime.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+
+        anime.setOnClickListener((View v) -> {
                 lectorRSS.initCategoryfilter("anime");
                 recyclerView.scrollToPosition(0);
                 Toast.makeText(MainActivity.this, "Filtrando por: Anime", Toast.LENGTH_SHORT).show();
-            }
         });
-        comic.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+
+        comic.setOnClickListener((View v) -> {
                 lectorRSS.initCategoryfilter("cómic");
                 recyclerView.scrollToPosition(0);
                 Toast.makeText(MainActivity.this, "Filtrando por: Cómic", Toast.LENGTH_SHORT).show();
-            }
         });
-        home.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                //recyclerView.scrollToPosition(0); // De esta forma no actualiza el contenido nuevo
+
+        home.setOnClickListener((View v) ->
                 startActivity(new Intent(getApplicationContext(), MainActivity.class),
-                        ActivityOptions.makeSceneTransitionAnimation(MainActivity.this).toBundle());
-            }
-        });
-        play.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+                        ActivityOptions.makeSceneTransitionAnimation(MainActivity.this).toBundle())
+        );
+
+        play.setOnClickListener((View v) -> {
                 Intent intent = new Intent(getApplicationContext(), MyWebView.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 intent.putExtra("Enlace", "https://super-ficcion.com/test-y-trivias/");
                 startActivity(intent);
-            }
         });
-        moreRead.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+
+        moreRead.setOnClickListener((View v) -> {
                 Intent intent = new Intent(getApplicationContext(), MyWebView.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 intent.putExtra("Enlace", "https://super-ficcion.com/lo-mas-leido-super-ficcion/");
                 startActivity(intent);
-            }
         });
-        calendar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Toast.makeText(MainActivity.this, "En desarrollo...", Toast.LENGTH_SHORT).show();
-            }
-        });
+
+        calendar.setOnClickListener((View v) -> Toast.makeText(MainActivity.this, "En desarrollo...", Toast.LENGTH_SHORT).show());
+
 
 
     }
-/** Nuevo metodo para el toast con imagen.
- public void toastNoInternetConnection(String mensaje){
- LayoutInflater layoutInflater = getLayoutInflater();
- View view = layoutInflater.inflate(R.layout.layout, findViewById(R.id.elemento));
- TextView textView = view.findViewById(R.id.elemento);
- textView.setText(mensaje);
-
- Toast toast = new Toast(getApplicationContext());
- toast.setGravity(Gravity.CENTER, 0, 200);
- toast.setDuration(Toast.LENGTH_LONG);
- toast.setView(view);
- toast.show();
- }
- */
 }
