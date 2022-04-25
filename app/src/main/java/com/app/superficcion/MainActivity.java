@@ -67,7 +67,6 @@ public class MainActivity extends AppCompatActivity {
             startActivity(intent);
         }
 
-
         //Todas las referencias
         todo = findViewById(R.id.tvTodo);
         marvel = findViewById(R.id.tvMarvel);
