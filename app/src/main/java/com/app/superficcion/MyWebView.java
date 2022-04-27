@@ -21,6 +21,7 @@ public class MyWebView extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_web_view);
+        AdBlocker.init(this);
 
         //Definimos la barra de herramientas.
         wevViewToolbar = findViewById(R.id.webViewToolbar);
@@ -36,10 +37,11 @@ public class MyWebView extends AppCompatActivity {
 
         WebSettings webSettings = webView.getSettings();
         webSettings.setDomStorageEnabled(true);
-        webSettings.setJavaScriptEnabled(false);
+        webSettings.setJavaScriptEnabled(true);
         webSettings.setLoadsImagesAutomatically(true);
         webSettings.setSupportZoom(true);
 
+        webView.setWebViewClient(new MyBrowser());
         webView.clearCache(true);
         webView.clearHistory();
         if (WebViewFeature.isFeatureSupported(WebViewFeature.FORCE_DARK_STRATEGY)) {
