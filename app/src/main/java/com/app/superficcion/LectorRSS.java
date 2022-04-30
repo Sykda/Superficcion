@@ -205,7 +205,7 @@ public class LectorRSS extends AsyncTask<Void, Void, Void> implements SearchView
 
     @Override
     public boolean onQueryTextChange(String s) {
-        adapterNoticia.filter(s);
+        adapterNoticia.filter(s, 0);
         recyclerView.scrollToPosition(0);
         return false;
     }
@@ -215,10 +215,9 @@ public class LectorRSS extends AsyncTask<Void, Void, Void> implements SearchView
     }
 
     public void initCategoryfilter(String s) {
-        adapterNoticia.categoryFilter(s);
+        adapterNoticia.filter(s, 1);
 
     }
-
 }
 
 

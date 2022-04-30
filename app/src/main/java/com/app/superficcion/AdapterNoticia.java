@@ -71,19 +71,26 @@ public class AdapterNoticia extends RecyclerView.Adapter<AdapterNoticia.MyViewHo
         return noticias.size();
     }
 
-    //Filtro general
-    public void filter(final String strSearch) {
+    //Filtro
+    public void filter(final String strSearch, int choice) {
+
         if (strSearch.length() == 0) {
             noticias.clear();
             noticias.addAll(originalItems);
         } else {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
                 noticias.clear();
-                List<Noticia> collect = originalItems.stream()
-                        .filter(i -> i.getmTitulo().toLowerCase().contains(strSearch))
-                        .collect(Collectors.toList());
-
-                noticias.addAll(collect);
+                if (choice == 0) {
+                    List<Noticia> collect = originalItems.stream()
+                            .filter(i -> i.getmTitulo().toLowerCase().contains(strSearch))
+                            .collect(Collectors.toList());
+                    noticias.addAll(collect);
+                } else {
+                    List<Noticia> collect = originalItems.stream()
+                            .filter(i -> i.getmCategoria().toLowerCase().contains(strSearch))
+                            .collect(Collectors.toList());
+                    noticias.addAll(collect);
+                }
             } else {
                 noticias.clear();
                 for (Noticia i : originalItems) {
@@ -93,33 +100,6 @@ public class AdapterNoticia extends RecyclerView.Adapter<AdapterNoticia.MyViewHo
                 }
             }
         }
-        notifyDataSetChanged();
-    }
-
-    //Filtro para categorías
-    /** Juntar con el filtro general más adelante */
-    public void categoryFilter(final String strSearch) {
-        if (strSearch.length() == 0) {
-            noticias.clear();
-            noticias.addAll(originalItems);
-        } else {
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-                noticias.clear();
-                List<Noticia> collect = originalItems.stream()
-                        .filter(i -> i.getmCategoria().toLowerCase().contains(strSearch))
-                        .collect(Collectors.toList());
-
-                noticias.addAll(collect);
-            } else {
-                noticias.clear();
-                for (Noticia i : originalItems) {
-                    if (i.getmDescripcion().toLowerCase().contains(strSearch)) {
-                        noticias.add(i);
-                    }
-                }
-            }
-        }
-
         notifyDataSetChanged();
     }
 
@@ -140,5 +120,4 @@ public class AdapterNoticia extends RecyclerView.Adapter<AdapterNoticia.MyViewHo
             cardView = itemView.findViewById(R.id.cardViewNoticia);
         }
     }
-
 }
