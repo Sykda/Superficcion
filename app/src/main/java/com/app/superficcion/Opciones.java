@@ -1,6 +1,6 @@
 package com.app.superficcion;
 
-//opciones para filtro
+//Opciones para filtro
 public class Opciones {
     int id;
     String name;

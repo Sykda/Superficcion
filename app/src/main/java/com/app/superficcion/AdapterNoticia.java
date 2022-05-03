@@ -38,8 +38,8 @@ public class AdapterNoticia extends RecyclerView.Adapter<AdapterNoticia.MyViewHo
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(context).inflate(R.layout.item_noticia, parent, false);
-        MyViewHolder holder = new MyViewHolder(view);
-        return holder;
+        MyViewHolder noticiaHolder = new MyViewHolder(view);
+        return noticiaHolder;
     }
 
     @Override
@@ -53,17 +53,12 @@ public class AdapterNoticia extends RecyclerView.Adapter<AdapterNoticia.MyViewHo
 
         Picasso.get().load(noticia.getmImagen()).into(holder.mImagen);
 
-
-        holder.cardView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(context, MyWebView.class);
-                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                intent.putExtra("Enlace", noticia.getmEnlace());
-                context.startActivity(intent);
-            }
+        holder.cardView.setOnClickListener((View v) -> {
+            Intent intent = new Intent(context, MyWebView.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            intent.putExtra("Enlace", noticia.getmEnlace());
+            context.startActivity(intent);
         });
-
     }
 
     @Override

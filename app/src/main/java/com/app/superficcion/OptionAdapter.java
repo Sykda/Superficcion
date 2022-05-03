@@ -20,9 +20,9 @@ public class OptionAdapter extends RecyclerView.Adapter<OptionAdapter.MyViewHold
     private final Context context;
     private int selectedItem;
 
-    public OptionAdapter(Context context, List<Opciones> petsList) {
+    public OptionAdapter(Context context, List<Opciones> optionList) {
         this.context = context;
-        this.optionList = petsList;
+        this.optionList = optionList;
         selectedItem = 0;
     }
 
@@ -35,18 +35,17 @@ public class OptionAdapter extends RecyclerView.Adapter<OptionAdapter.MyViewHold
     }
 
     @Override
-    public void onBindViewHolder(OptionAdapter.MyViewHolder holder, @SuppressLint("RecyclerView") final int position) {
-        holder.itemView.setTag(optionList.get(position));
-        holder.opcion_id.setText(optionList.get(position).getName());
-        holder.cardViewOpciones.setCardBackgroundColor(Color.parseColor("#3C3F41"));
+    public void onBindViewHolder(OptionAdapter.MyViewHolder optionHolder, @SuppressLint("RecyclerView") final int position) {
+        optionHolder.itemView.setTag(optionList.get(position));
+        optionHolder.opcion_id.setText(optionList.get(position).getName());
+        optionHolder.cardViewOpciones.setCardBackgroundColor(Color.parseColor("#3C3F41"));
 
         if (selectedItem == position) {
-            holder.cardViewOpciones.setCardBackgroundColor(Color.BLUE);
+            optionHolder.cardViewOpciones.setCardBackgroundColor(Color.BLUE);
         }
 
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+        optionHolder.itemView.setOnClickListener((View v) -> {
+
                 int previousItem = selectedItem;
                 selectedItem = position;
                 notifyItemChanged(previousItem);
@@ -88,9 +87,6 @@ public class OptionAdapter extends RecyclerView.Adapter<OptionAdapter.MyViewHold
                         MainActivity.recyclerView.scrollToPosition(0);
                         Toast.makeText(context.getApplicationContext(), "Filtrando por: CÓMIC", Toast.LENGTH_SHORT).show();
                         break;
-
-
-                }
             }
         });
     }
