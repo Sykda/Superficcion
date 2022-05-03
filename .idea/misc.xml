@@ -3,6 +3,8 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/Syk18/AndroidStudioProjects/Superficcion/app/src/main/res/drawable/ic_calendar_foreground.xml" value="0.3335" />
+        <entry key="..\:/Users/Syk18/AndroidStudioProjects/Superficcion/app/src/main/res/drawable/ic_home_foreground.xml" value="0.3335" />
         <entry key="..\:/Users/Syk18/AndroidStudioProjects/Superficcion/app/src/main/res/drawable/ic_launcher_background.xml" value="0.3675" />
         <entry key="..\:/Users/Syk18/AndroidStudioProjects/Superficcion/app/src/main/res/layout-v31/activity_web_view.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/Syk18/AndroidStudioProjects/Superficcion/app/src/main/res/layout/abs_layout.xml" value="0.33" />
@@ -11,6 +13,7 @@
         <entry key="..\:/Users/Syk18/AndroidStudioProjects/Superficcion/app/src/main/res/layout/activity_web_view.xml" value="0.33" />
         <entry key="..\:/Users/Syk18/AndroidStudioProjects/Superficcion/app/src/main/res/layout/item_noticia.xml" value="0.33" />
         <entry key="..\:/Users/Syk18/AndroidStudioProjects/Superficcion/app/src/main/res/layout/options_menu.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/Syk18/AndroidStudioProjects/Superficcion/app/src/main/res/layout/recycler_items.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/Syk18/AndroidStudioProjects/Superficcion/app/src/main/res/layout/toast_layout.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/Syk18/AndroidStudioProjects/Superficcion/app/src/main/res/menu/options_menu.xml" value="0.36666666666666664" />
       </map>

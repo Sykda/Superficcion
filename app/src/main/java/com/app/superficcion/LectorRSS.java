@@ -29,7 +29,7 @@ public class LectorRSS extends AsyncTask<Void, Void, Void> implements SearchView
     private final SearchView searchView;
     private ArrayList<Noticia> noticias;
     private URL url;
-    private AdapterNoticia adapterNoticia;
+    private static AdapterNoticia adapterNoticia;
 
     //Constructor
     public LectorRSS(Context context, RecyclerView recyclerView, SearchView searchView) {
@@ -214,7 +214,7 @@ public class LectorRSS extends AsyncTask<Void, Void, Void> implements SearchView
         searchView.setOnQueryTextListener(this);
     }
 
-    public void initCategoryfilter(String s) {
+    public static void initCategoryfilter(String s) {
         adapterNoticia.filter(s, 1);
 
     }
