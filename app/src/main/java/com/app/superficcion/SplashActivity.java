@@ -14,6 +14,7 @@ public class SplashActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
 
+        //Creamos un hilo para mostrar la pantalla de inicio y acabamos la activity
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
