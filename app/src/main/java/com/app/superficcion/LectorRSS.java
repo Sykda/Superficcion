@@ -23,13 +23,13 @@ import javax.xml.parsers.DocumentBuilderFactory;
 //AsincTask crea un hilo nuevo.
 public class LectorRSS extends AsyncTask<Void, Void, Void> implements SearchView.OnQueryTextListener {
 
+    private static AdapterNoticia adapterNoticia;
     private final Context context;
     private final RecyclerView recyclerView;
     private final String direccion = "https://super-ficcion.com/feed/";
     private final SearchView searchView;
     private ArrayList<Noticia> noticias;
     private URL url;
-    private static AdapterNoticia adapterNoticia;
 
     //Constructor
     public LectorRSS(Context context, RecyclerView recyclerView, SearchView searchView) {
@@ -37,6 +37,11 @@ public class LectorRSS extends AsyncTask<Void, Void, Void> implements SearchView
         this.context = context;
         this.searchView = searchView;
         initListener();
+    }
+
+    public static void initCategoryfilter(String s) {
+        adapterNoticia.filter(s, 1);
+
     }
 
     @Override
@@ -212,11 +217,6 @@ public class LectorRSS extends AsyncTask<Void, Void, Void> implements SearchView
 
     private void initListener() {
         searchView.setOnQueryTextListener(this);
-    }
-
-    public static void initCategoryfilter(String s) {
-        adapterNoticia.filter(s, 1);
-
     }
 }
 

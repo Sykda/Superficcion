@@ -53,7 +53,7 @@ public class AdBlocker {
 
     public static boolean isAd(String url) {
         try {
-            return isAdHost(getHost(url))||AD_HOSTS.contains(Uri.parse(url).getLastPathSegment());
+            return isAdHost(getHost(url)) || AD_HOSTS.contains(Uri.parse(url).getLastPathSegment());
         } catch (MalformedURLException e) {
             Log.d("Ind", e.toString());
             return false;

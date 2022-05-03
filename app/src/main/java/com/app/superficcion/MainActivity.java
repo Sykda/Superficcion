@@ -4,18 +4,13 @@ import android.app.ActivityOptions;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.graphics.Color;
-import android.graphics.Path;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.SearchView;
-import android.widget.TextView;
 import android.widget.Toast;
-import android.widget.Toolbar;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -27,7 +22,7 @@ public class MainActivity extends AppCompatActivity {
     public static RecyclerView recyclerView, recyclerOpciones;
     private SearchView searchView;
     private ImageButton home, play, moreRead, calendar;
-    private ArrayList<Opciones> optionList= new ArrayList<>();
+    private final ArrayList<Opciones> optionList = new ArrayList<>();
     private OptionAdapter optionAdapter;
 
     //Programamos el comportamiento del botón "atrás" de android.
@@ -80,7 +75,7 @@ public class MainActivity extends AppCompatActivity {
         lectorRSS.execute();
 
         //
-        optionAdapter = new OptionAdapter(MainActivity.this,optionList);
+        optionAdapter = new OptionAdapter(MainActivity.this, optionList);
         recyclerOpciones = findViewById(R.id.recyclerOpciones);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(MainActivity.this, LinearLayoutManager.HORIZONTAL, false);
         recyclerOpciones.setLayoutManager(linearLayoutManager);

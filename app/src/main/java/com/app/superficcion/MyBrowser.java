@@ -12,13 +12,14 @@ import java.util.Map;
 @SuppressWarnings("deprecation")
 public class MyBrowser extends WebViewClient {
 
+    private final Map<String, Boolean> loadedUrls = new HashMap<>();
+
     @Override
     public boolean shouldOverrideUrlLoading(WebView view, String url) {
         view.loadUrl(url);
         return true;
     }
 
-    private Map<String, Boolean> loadedUrls = new HashMap<>();
     @Nullable
     @Override
     public WebResourceResponse shouldInterceptRequest(WebView view, String url) {

@@ -9,17 +9,15 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
 
-public class OptionAdapter extends RecyclerView.Adapter<OptionAdapter.MyViewHolder>  {
+public class OptionAdapter extends RecyclerView.Adapter<OptionAdapter.MyViewHolder> {
 
-    private List<Opciones> optionList;
-    private Context context;
-    private static int lastClickedPosition = -1;
+    private final List<Opciones> optionList;
+    private final Context context;
     private int selectedItem;
 
     public OptionAdapter(Context context, List<Opciones> petsList) {
@@ -54,45 +52,45 @@ public class OptionAdapter extends RecyclerView.Adapter<OptionAdapter.MyViewHold
                 notifyItemChanged(previousItem);
                 notifyItemChanged(position);
 
-               switch (optionList.get(position).getName()){
-                   case "TODO":
-                       LectorRSS.initCategoryfilter("");
-                       MainActivity.recyclerView.scrollToPosition(0);
-                       Toast.makeText(context.getApplicationContext(), "Filtrando por: TODO", Toast.LENGTH_SHORT).show();
-                       break;
-                   case "MARVEL":
-                       LectorRSS.initCategoryfilter("marvel");
-                       MainActivity.recyclerView.scrollToPosition(0);
-                       Toast.makeText(context.getApplicationContext(), "Filtrando por: MARVEL", Toast.LENGTH_SHORT).show();
-                       break;
-                   case "DC":
-                       LectorRSS.initCategoryfilter("dc");
-                       MainActivity.recyclerView.scrollToPosition(0);
-                       Toast.makeText(context.getApplicationContext(), "Filtrando por: DC", Toast.LENGTH_SHORT).show();
-                       break;
-                   case "STAR WARS":
-                       LectorRSS.initCategoryfilter("star wars");
-                       MainActivity.recyclerView.scrollToPosition(0);
-                       Toast.makeText(context.getApplicationContext(), "Filtrando por: STAR WARS", Toast.LENGTH_SHORT).show();
-                       break;
-                   case "SCI-FY/FANTASÍA":
-                       LectorRSS.initCategoryfilter("fantasía");
-                       MainActivity.recyclerView.scrollToPosition(0);
-                       Toast.makeText(context.getApplicationContext(), "Filtrando por: SCI-FY/FANTASÍA", Toast.LENGTH_SHORT).show();
-                       break;
-                   case "ANIME":
-                       LectorRSS.initCategoryfilter("anime");
-                       MainActivity.recyclerView.scrollToPosition(0);
-                       Toast.makeText(context.getApplicationContext(), "Filtrando por: ANIME", Toast.LENGTH_SHORT).show();
-                       break;
-                   case "CÓMIC":
-                       LectorRSS.initCategoryfilter("cómic");
-                       MainActivity.recyclerView.scrollToPosition(0);
-                       Toast.makeText(context.getApplicationContext(), "Filtrando por: CÓMIC", Toast.LENGTH_SHORT).show();
-                       break;
+                switch (optionList.get(position).getName()) {
+                    case "TODO":
+                        LectorRSS.initCategoryfilter("");
+                        MainActivity.recyclerView.scrollToPosition(0);
+                        Toast.makeText(context.getApplicationContext(), "Filtrando por: TODO", Toast.LENGTH_SHORT).show();
+                        break;
+                    case "MARVEL":
+                        LectorRSS.initCategoryfilter("marvel");
+                        MainActivity.recyclerView.scrollToPosition(0);
+                        Toast.makeText(context.getApplicationContext(), "Filtrando por: MARVEL", Toast.LENGTH_SHORT).show();
+                        break;
+                    case "DC":
+                        LectorRSS.initCategoryfilter("dc");
+                        MainActivity.recyclerView.scrollToPosition(0);
+                        Toast.makeText(context.getApplicationContext(), "Filtrando por: DC", Toast.LENGTH_SHORT).show();
+                        break;
+                    case "STAR WARS":
+                        LectorRSS.initCategoryfilter("star wars");
+                        MainActivity.recyclerView.scrollToPosition(0);
+                        Toast.makeText(context.getApplicationContext(), "Filtrando por: STAR WARS", Toast.LENGTH_SHORT).show();
+                        break;
+                    case "SCI-FY/FANTASÍA":
+                        LectorRSS.initCategoryfilter("fantasía");
+                        MainActivity.recyclerView.scrollToPosition(0);
+                        Toast.makeText(context.getApplicationContext(), "Filtrando por: SCI-FY/FANTASÍA", Toast.LENGTH_SHORT).show();
+                        break;
+                    case "ANIME":
+                        LectorRSS.initCategoryfilter("anime");
+                        MainActivity.recyclerView.scrollToPosition(0);
+                        Toast.makeText(context.getApplicationContext(), "Filtrando por: ANIME", Toast.LENGTH_SHORT).show();
+                        break;
+                    case "CÓMIC":
+                        LectorRSS.initCategoryfilter("cómic");
+                        MainActivity.recyclerView.scrollToPosition(0);
+                        Toast.makeText(context.getApplicationContext(), "Filtrando por: CÓMIC", Toast.LENGTH_SHORT).show();
+                        break;
 
 
-               }
+                }
             }
         });
     }
