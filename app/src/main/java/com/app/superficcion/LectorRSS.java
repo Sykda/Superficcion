@@ -39,11 +39,6 @@ public class LectorRSS extends AsyncTask<Void, Void, Void> implements SearchView
         initListener();
     }
 
-    public static void initCategoryfilter(String s) {
-        adapterNoticia.filter(s, 1);
-
-    }
-
     @Override
     protected void onPreExecute() {
         super.onPreExecute();
@@ -139,14 +134,14 @@ public class LectorRSS extends AsyncTask<Void, Void, Void> implements SearchView
         String[] splitPar = string.split("<p>");
         String resume = splitPar[3].replace("</p>", "");
         String[] limitedWords = resume.split(" ");
-        ArrayList<String> only15 = new ArrayList<>();
+        ArrayList<String> limited = new ArrayList<>();
         for (String i :
                 limitedWords) {
-            if (only15.size() < 20) {
-                only15.add(i);
+            if (limited.size() < 20) {
+                limited.add(i);
             }
         }
-        String str = String.join(" ", only15);
+        String str = String.join(" ", limited);
 
         if (str.contains("list") || str.contains("paragraph")) {
             return "¡¡Entra para ver la noticia!!";
@@ -217,6 +212,10 @@ public class LectorRSS extends AsyncTask<Void, Void, Void> implements SearchView
 
     private void initListener() {
         searchView.setOnQueryTextListener(this);
+    }
+
+    public static void categoryFilter(String s) {
+        adapterNoticia.filter(s, 1);
     }
 }
 

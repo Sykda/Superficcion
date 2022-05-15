@@ -53,37 +53,37 @@ public class OptionAdapter extends RecyclerView.Adapter<OptionAdapter.MyViewHold
 
                 switch (optionList.get(position).getName()) {
                     case "TODO":
-                        LectorRSS.initCategoryfilter("");
+                        LectorRSS.categoryFilter("");
                         MainActivity.recyclerView.scrollToPosition(0);
                         Toast.makeText(context.getApplicationContext(), "Filtrando por: TODO", Toast.LENGTH_SHORT).show();
                         break;
                     case "MARVEL":
-                        LectorRSS.initCategoryfilter("marvel");
+                        LectorRSS.categoryFilter("marvel");
                         MainActivity.recyclerView.scrollToPosition(0);
                         Toast.makeText(context.getApplicationContext(), "Filtrando por: MARVEL", Toast.LENGTH_SHORT).show();
                         break;
                     case "DC":
-                        LectorRSS.initCategoryfilter("dc");
+                        LectorRSS.categoryFilter("dc");
                         MainActivity.recyclerView.scrollToPosition(0);
                         Toast.makeText(context.getApplicationContext(), "Filtrando por: DC", Toast.LENGTH_SHORT).show();
                         break;
                     case "STAR WARS":
-                        LectorRSS.initCategoryfilter("star wars");
+                        LectorRSS.categoryFilter("star wars");
                         MainActivity.recyclerView.scrollToPosition(0);
                         Toast.makeText(context.getApplicationContext(), "Filtrando por: STAR WARS", Toast.LENGTH_SHORT).show();
                         break;
                     case "SCI-FY/FANTASÍA":
-                        LectorRSS.initCategoryfilter("fantasía");
+                        LectorRSS.categoryFilter("fantasía");
                         MainActivity.recyclerView.scrollToPosition(0);
                         Toast.makeText(context.getApplicationContext(), "Filtrando por: SCI-FY/FANTASÍA", Toast.LENGTH_SHORT).show();
                         break;
                     case "ANIME":
-                        LectorRSS.initCategoryfilter("anime");
+                        LectorRSS.categoryFilter("anime");
                         MainActivity.recyclerView.scrollToPosition(0);
                         Toast.makeText(context.getApplicationContext(), "Filtrando por: ANIME", Toast.LENGTH_SHORT).show();
                         break;
                     case "CÓMIC":
-                        LectorRSS.initCategoryfilter("cómic");
+                        LectorRSS.categoryFilter("cómic");
                         MainActivity.recyclerView.scrollToPosition(0);
                         Toast.makeText(context.getApplicationContext(), "Filtrando por: CÓMIC", Toast.LENGTH_SHORT).show();
                         break;

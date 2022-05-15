@@ -41,7 +41,7 @@ public class MyWebView extends AppCompatActivity {
         webSettings.setLoadsImagesAutomatically(true);
         webSettings.setSupportZoom(true);
 
-        webView.setWebViewClient(new MyBrowser());
+        webView.setWebViewClient(new MyBrowser());//HABLAR DE ANUNCIOS
         webView.clearCache(true);
         webView.clearHistory();
         if (WebViewFeature.isFeatureSupported(WebViewFeature.FORCE_DARK_STRATEGY)) {
