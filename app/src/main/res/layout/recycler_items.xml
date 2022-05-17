@@ -4,11 +4,11 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:layout_margin="10dp"
-    app:cardCornerRadius="10dp"
     android:layout_marginTop="10dp"
     android:layout_marginBottom="10dp"
     android:background="#3A3737"
-    app:cardBackgroundColor="#535255">
+    app:cardBackgroundColor="#535255"
+    app:cardCornerRadius="10dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="wrap_content"
@@ -19,9 +19,9 @@
             android:id="@+id/opcion_id"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="PRUEBA"
             android:gravity="center"
             android:padding="10dp"
+            android:text="PRUEBA"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
