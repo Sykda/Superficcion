@@ -2,7 +2,6 @@ package com.app.superficcion;
 
 import android.app.ActivityOptions;
 import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -20,9 +19,9 @@ import java.util.ArrayList;
 public class MainActivity extends AppCompatActivity {
 
     public static RecyclerView recyclerView, recyclerOpciones;
+    private final ArrayList<Option> optionList = new ArrayList<>();
     private SearchView searchView;
     private ImageButton home, play, moreRead, calendar;
-    private final ArrayList<Opciones> optionList = new ArrayList<>();
     private OptionAdapter optionAdapter;
 
     //Programamos el comportamiento del botón "atrás" de android.
@@ -30,21 +29,15 @@ public class MainActivity extends AppCompatActivity {
     public void onBackPressed() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setMessage("¿Quieres salir de Super-Ficción?")
-                .setPositiveButton("Si", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        Intent intent = new Intent(Intent.ACTION_MAIN);
-                        intent.addCategory(Intent.CATEGORY_HOME);
-                        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                        startActivity(intent);
-                    }
+                .setPositiveButton("Si", (dialog, which) -> {
+                    Intent intent = new Intent(Intent.ACTION_MAIN);
+                    intent.addCategory(Intent.CATEGORY_HOME);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    startActivity(intent);
                 })
-                .setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        dialogInterface.dismiss();
-                    }
-                });
+                .setNegativeButton("Cancelar", (dialog, which) ->
+                        dialog.dismiss()
+                );
         builder.show();
     }
 
@@ -70,9 +63,9 @@ public class MainActivity extends AppCompatActivity {
         searchView = findViewById(R.id.searchView);
         recyclerView = findViewById(R.id.recycleView);
 
-        //Instancia y lanzamiento de la clase lectorRSS
-        LectorRSS lectorRSS = new LectorRSS(getApplicationContext(), recyclerView, searchView);
-        lectorRSS.execute();
+        //Instancia y lanzamiento de la clase RSSReader
+        RSSReader RSSReader = new RSSReader(getApplicationContext(), recyclerView, searchView);
+        RSSReader.execute();
 
         //
         optionAdapter = new OptionAdapter(MainActivity.this, optionList);
@@ -106,21 +99,19 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void prepareOptionsData() {
-        Opciones opcion = new Opciones(1, "TODO");
+        Option opcion = new Option(1, "TODO");
         optionList.add(opcion);
-        opcion = new Opciones(2, "MARVEL");
+        opcion = new Option(2, "MARVEL");
         optionList.add(opcion);
-        opcion = new Opciones(3, "DC");
+        opcion = new Option(3, "DC");
         optionList.add(opcion);
-        opcion = new Opciones(4, "STAR WARS");
+        opcion = new Option(4, "STAR WARS");
         optionList.add(opcion);
-        opcion = new Opciones(5, "SCI-FY/FANTASÍA");
+        opcion = new Option(5, "SCI-FY/FANTASÍA");
         optionList.add(opcion);
-        opcion = new Opciones(6, "ANIME");
+        opcion = new Option(6, "ANIME");
         optionList.add(opcion);
-        opcion = new Opciones(7, "CÓMIC");
+        opcion = new Option(7, "CÓMIC");
         optionList.add(opcion);
-
-        optionAdapter.notifyDataSetChanged();
     }
 }

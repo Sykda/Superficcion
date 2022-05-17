@@ -21,22 +21,26 @@ import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 
 //AsincTask crea un hilo nuevo.
-public class LectorRSS extends AsyncTask<Void, Void, Void> implements SearchView.OnQueryTextListener {
+public class RSSReader extends AsyncTask<Void, Void, Void> implements SearchView.OnQueryTextListener {
 
-    private static AdapterNoticia adapterNoticia;
-    private final Context context;
+    private static NewsAdapter newsAdapter;
     private final RecyclerView recyclerView;
     private final String direccion = "https://super-ficcion.com/feed/";
     private final SearchView searchView;
-    private ArrayList<Noticia> noticias;
+    private final Context context;
+    private ArrayList<News> news;
     private URL url;
 
     //Constructor
-    public LectorRSS(Context context, RecyclerView recyclerView, SearchView searchView) {
+    public RSSReader(Context context, RecyclerView recyclerView, SearchView searchView) {
         this.recyclerView = recyclerView;
         this.context = context;
         this.searchView = searchView;
         initListener();
+    }
+
+    public static void categoryFilter(String s) {
+        newsAdapter.filter(s, 1);
     }
 
     @Override
@@ -47,9 +51,9 @@ public class LectorRSS extends AsyncTask<Void, Void, Void> implements SearchView
     @Override
     protected void onPostExecute(Void aVoid) {
         super.onPostExecute(aVoid);
-        adapterNoticia = new AdapterNoticia(noticias, context);
+        newsAdapter = new NewsAdapter(news, context);
         recyclerView.setLayoutManager(new LinearLayoutManager(context));
-        recyclerView.setAdapter(adapterNoticia);
+        recyclerView.setAdapter(newsAdapter);
     }
 
     @Override
@@ -62,39 +66,39 @@ public class LectorRSS extends AsyncTask<Void, Void, Void> implements SearchView
     private void procesarXML(Document data) {
         //si hay doc me devuelve el log
         if (data != null) {
-            noticias = new ArrayList<>();
+            news = new ArrayList<>();
             Element root = data.getDocumentElement();
             Node channel = root.getChildNodes().item(1);
             NodeList items = channel.getChildNodes();
             for (int i = 0; i < items.getLength(); i++) {
                 Node hijoActual = items.item(i);
                 if (hijoActual.getNodeName().equalsIgnoreCase("item")) {
-                    Noticia noticia = new Noticia();
+                    News news = new News();
                     NodeList itemChilds = hijoActual.getChildNodes();
                     for (int j = 0; j < itemChilds.getLength(); j++) {
                         Node actual = itemChilds.item(j);
                         if (actual.getNodeName().equalsIgnoreCase("title")) {
-                            noticia.setmTitulo(actual.getTextContent());
+                            news.setmTitulo(actual.getTextContent());
                         } else if (actual.getNodeName().equalsIgnoreCase("link")) {
-                            noticia.setmEnlace(actual.getTextContent());
+                            news.setmEnlace(actual.getTextContent());
                         } else if (actual.getNodeName().equalsIgnoreCase("description")) {
                             Node imagechild = actual.getFirstChild();
                             String node = imagechild.getTextContent();
 
                             String imagen = getImageFromDescription(node);
-                            noticia.setmImagen(imagen);
+                            news.setmImagen(imagen);
 
                             String resume = getResumeFromDescription(node);
-                            noticia.setmDescripcion(resume);
+                            news.setmDescripcion(resume);
                         } else if (actual.getNodeName().equalsIgnoreCase("pubDate")) {
-                            noticia.setmFecha(formatDate(actual.getTextContent()));
+                            news.setmFecha(formatDate(actual.getTextContent()));
                         }
 
                         String categoria = itemChilds.item(9).getTextContent();
-                        noticia.setmCategoria(categoria);
+                        news.setmCategoria(categoria);
 
                     }
-                    noticias.add(noticia);
+                    this.news.add(news);
                 }
             }
         }
@@ -205,17 +209,13 @@ public class LectorRSS extends AsyncTask<Void, Void, Void> implements SearchView
 
     @Override
     public boolean onQueryTextChange(String s) {
-        adapterNoticia.filter(s, 0);
+        newsAdapter.filter(s, 0);
         recyclerView.scrollToPosition(0);
         return false;
     }
 
     private void initListener() {
         searchView.setOnQueryTextListener(this);
-    }
-
-    public static void categoryFilter(String s) {
-        adapterNoticia.filter(s, 1);
     }
 }
 

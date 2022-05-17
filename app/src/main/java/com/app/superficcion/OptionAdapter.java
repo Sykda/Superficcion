@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -16,16 +17,17 @@ import java.util.List;
 
 public class OptionAdapter extends RecyclerView.Adapter<OptionAdapter.MyViewHolder> {
 
-    private final List<Opciones> optionList;
+    private final List<Option> optionList;
     private final Context context;
     private int selectedItem;
 
-    public OptionAdapter(Context context, List<Opciones> optionList) {
+    public OptionAdapter(Context context, List<Option> optionList) {
         this.context = context;
         this.optionList = optionList;
         selectedItem = 0;
     }
 
+    @NonNull
     @Override
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View itemView = LayoutInflater.from(parent.getContext())
@@ -35,58 +37,58 @@ public class OptionAdapter extends RecyclerView.Adapter<OptionAdapter.MyViewHold
     }
 
     @Override
-    public void onBindViewHolder(OptionAdapter.MyViewHolder optionHolder, @SuppressLint("RecyclerView") final int position) {
-        optionHolder.itemView.setTag(optionList.get(position));
-        optionHolder.opcion_id.setText(optionList.get(position).getName());
-        optionHolder.cardViewOpciones.setCardBackgroundColor(Color.parseColor("#3C3F41"));
+    public void onBindViewHolder(OptionAdapter.MyViewHolder optionsHolder, @SuppressLint("RecyclerView") final int position) {
+        optionsHolder.itemView.setTag(optionList.get(position));
+        optionsHolder.opcion_id.setText(optionList.get(position).getName());
+        optionsHolder.cardViewOpciones.setCardBackgroundColor(Color.parseColor("#3C3F41"));
 
         if (selectedItem == position) {
-            optionHolder.cardViewOpciones.setCardBackgroundColor(Color.BLUE);
+            optionsHolder.cardViewOpciones.setCardBackgroundColor(Color.BLUE);
         }
 
-        optionHolder.itemView.setOnClickListener((View v) -> {
+        optionsHolder.itemView.setOnClickListener((View v) -> {
 
-                int previousItem = selectedItem;
-                selectedItem = position;
-                notifyItemChanged(previousItem);
-                notifyItemChanged(position);
+            int previousItem = selectedItem;
+            selectedItem = position;
+            notifyItemChanged(previousItem);
+            notifyItemChanged(position);
 
-                switch (optionList.get(position).getName()) {
-                    case "TODO":
-                        LectorRSS.categoryFilter("");
-                        MainActivity.recyclerView.scrollToPosition(0);
-                        Toast.makeText(context.getApplicationContext(), "Filtrando por: TODO", Toast.LENGTH_SHORT).show();
-                        break;
-                    case "MARVEL":
-                        LectorRSS.categoryFilter("marvel");
-                        MainActivity.recyclerView.scrollToPosition(0);
-                        Toast.makeText(context.getApplicationContext(), "Filtrando por: MARVEL", Toast.LENGTH_SHORT).show();
-                        break;
-                    case "DC":
-                        LectorRSS.categoryFilter("dc");
-                        MainActivity.recyclerView.scrollToPosition(0);
-                        Toast.makeText(context.getApplicationContext(), "Filtrando por: DC", Toast.LENGTH_SHORT).show();
-                        break;
-                    case "STAR WARS":
-                        LectorRSS.categoryFilter("star wars");
-                        MainActivity.recyclerView.scrollToPosition(0);
-                        Toast.makeText(context.getApplicationContext(), "Filtrando por: STAR WARS", Toast.LENGTH_SHORT).show();
-                        break;
-                    case "SCI-FY/FANTASÍA":
-                        LectorRSS.categoryFilter("fantasía");
-                        MainActivity.recyclerView.scrollToPosition(0);
-                        Toast.makeText(context.getApplicationContext(), "Filtrando por: SCI-FY/FANTASÍA", Toast.LENGTH_SHORT).show();
-                        break;
-                    case "ANIME":
-                        LectorRSS.categoryFilter("anime");
-                        MainActivity.recyclerView.scrollToPosition(0);
-                        Toast.makeText(context.getApplicationContext(), "Filtrando por: ANIME", Toast.LENGTH_SHORT).show();
-                        break;
-                    case "CÓMIC":
-                        LectorRSS.categoryFilter("cómic");
-                        MainActivity.recyclerView.scrollToPosition(0);
-                        Toast.makeText(context.getApplicationContext(), "Filtrando por: CÓMIC", Toast.LENGTH_SHORT).show();
-                        break;
+            switch (optionList.get(position).getName()) {
+                case "TODO":
+                    RSSReader.categoryFilter("");
+                    MainActivity.recyclerView.scrollToPosition(0);
+                    Toast.makeText(context.getApplicationContext(), "Filtrando por: TODO", Toast.LENGTH_SHORT).show();
+                    break;
+                case "MARVEL":
+                    RSSReader.categoryFilter("marvel");
+                    MainActivity.recyclerView.scrollToPosition(0);
+                    Toast.makeText(context.getApplicationContext(), "Filtrando por: MARVEL", Toast.LENGTH_SHORT).show();
+                    break;
+                case "DC":
+                    RSSReader.categoryFilter("dc");
+                    MainActivity.recyclerView.scrollToPosition(0);
+                    Toast.makeText(context.getApplicationContext(), "Filtrando por: DC", Toast.LENGTH_SHORT).show();
+                    break;
+                case "STAR WARS":
+                    RSSReader.categoryFilter("star wars");
+                    MainActivity.recyclerView.scrollToPosition(0);
+                    Toast.makeText(context.getApplicationContext(), "Filtrando por: STAR WARS", Toast.LENGTH_SHORT).show();
+                    break;
+                case "SCI-FY/FANTASÍA":
+                    RSSReader.categoryFilter("fantasía");
+                    MainActivity.recyclerView.scrollToPosition(0);
+                    Toast.makeText(context.getApplicationContext(), "Filtrando por: SCI-FY/FANTASÍA", Toast.LENGTH_SHORT).show();
+                    break;
+                case "ANIME":
+                    RSSReader.categoryFilter("anime");
+                    MainActivity.recyclerView.scrollToPosition(0);
+                    Toast.makeText(context.getApplicationContext(), "Filtrando por: ANIME", Toast.LENGTH_SHORT).show();
+                    break;
+                case "CÓMIC":
+                    RSSReader.categoryFilter("cómic");
+                    MainActivity.recyclerView.scrollToPosition(0);
+                    Toast.makeText(context.getApplicationContext(), "Filtrando por: CÓMIC", Toast.LENGTH_SHORT).show();
+                    break;
             }
         });
     }
@@ -102,8 +104,8 @@ public class OptionAdapter extends RecyclerView.Adapter<OptionAdapter.MyViewHold
 
         public MyViewHolder(View view) {
             super(view);
-            opcion_id = (TextView) view.findViewById(R.id.opcion_id);
-            cardViewOpciones = (CardView) view.findViewById(R.id.cardViewOpciones);
+            opcion_id = view.findViewById(R.id.opcion_id);
+            cardViewOpciones = view.findViewById(R.id.cardViewOpciones);
 
         }
     }

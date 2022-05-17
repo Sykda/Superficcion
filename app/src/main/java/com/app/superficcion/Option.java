@@ -1,11 +1,11 @@
 package com.app.superficcion;
 
-//Opciones para filtro
-public class Opciones {
+//Option para filtro
+public class Option {
     int id;
     String name;
 
-    public Opciones(int id, String name) {
+    public Option(int id, String name) {
         this.id = id;
         this.name = name;
     }

@@ -1,6 +1,6 @@
 package com.app.superficcion;
 
-public class Noticia {
+public class News {
 
     String mTitulo, mEnlace, mDescripcion, mImagen, mFecha, mCategoria;
 
