@@ -3,6 +3,7 @@ package com.app.superficcion;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
+import android.view.Window;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 
@@ -20,6 +21,7 @@ public class MyWebView extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getWindow().setStatusBarColor(Window.getDefaultFeatures(this));
         setContentView(R.layout.activity_web_view);
         AdBlocker.init(this);
 
