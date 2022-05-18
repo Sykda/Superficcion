@@ -28,7 +28,7 @@
 
         <SearchView
             android:id="@+id/searchView"
-            android:layout_width="168dp"
+            android:layout_width="match_parent"
             android:layout_height="44dp"
             tools:layout_editor_absoluteX="236dp"
             tools:layout_editor_absoluteY="2dp" />
