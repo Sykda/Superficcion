@@ -73,17 +73,17 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.MyViewHolder> 
             news.addAll(originalItems);
         } else {
             news.clear();
+            List<News> collect;
             if (choice == 0) {
-                List<News> collect = originalItems.stream()
+                collect = originalItems.stream()
                         .filter(i -> i.getmTitulo().toLowerCase().contains(strSearch))
                         .collect(Collectors.toList());
-                news.addAll(collect);
             } else {
-                List<News> collect = originalItems.stream()
+                collect = originalItems.stream()
                         .filter(i -> i.getmCategoria().toLowerCase().contains(strSearch))
                         .collect(Collectors.toList());
-                news.addAll(collect);
             }
+            news.addAll(collect);
         }
         notifyDataSetChanged();
     }
