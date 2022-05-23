@@ -97,7 +97,7 @@ public class MainActivity extends AppCompatActivity {
             startActivity(intent);
         });
 
-        calendar.setOnClickListener((View v) -> Toast.makeText(MainActivity.this, "En desarrollo...", Toast.LENGTH_SHORT).show());
+        calendar.setOnClickListener((View v) -> startActivity(new Intent(getApplicationContext(), CalendarActivity.class)));
     }
 
     private void prepareOptionsData() {

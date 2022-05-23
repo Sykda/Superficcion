@@ -90,7 +90,6 @@ public class RSSReader extends AsyncTask<Void, Void, Void> implements SearchView
                             news.setmImagen(imagen);
 
                             String resume = getResumeFromDescription(node);
-                            Log.i("Descripcion", node);
                             news.setmDescripcion(resume);
                         } else if (actual.getNodeName().equalsIgnoreCase("pubDate")) {
                             news.setmFecha(formatDate(actual.getTextContent()));
@@ -101,8 +100,6 @@ public class RSSReader extends AsyncTask<Void, Void, Void> implements SearchView
 
                     }
                     this.news.add(news);
-
-
                 }
             }
         }
