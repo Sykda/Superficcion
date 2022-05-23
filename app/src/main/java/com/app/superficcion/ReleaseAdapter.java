@@ -15,16 +15,21 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class ReleaseAdapter extends RecyclerView.Adapter<ReleaseAdapter.MyViewHolder> {
 
     private ArrayList<Release> releases;
+    private final ArrayList<Release> originalItems;
     private Context context;
 
     //Constructor
     public ReleaseAdapter(ArrayList<Release> releases, Context context) {
         this.releases = releases;
         this.context = context;
+        this.originalItems = new ArrayList<>();
+        originalItems.addAll(releases);
     }
 
     @NonNull
@@ -69,5 +74,28 @@ public class ReleaseAdapter extends RecyclerView.Adapter<ReleaseAdapter.MyViewHo
             mCategoria = itemView.findViewById(R.id.categoriaId);
             cardView = itemView.findViewById(R.id.cardViewNoticia);
         }
+    }
+
+    //Filtro
+    public void filter(final String strSearch, int choice) {
+
+        if (strSearch.length() == 0) {
+            releases.clear();
+            releases.addAll(originalItems);
+        } else {
+            releases.clear();
+            List<Release> collect;
+            if (choice == 0) {
+                collect = originalItems.stream()
+                        .filter(i -> i.getTitulo().toLowerCase().contains(strSearch))
+                        .collect(Collectors.toList());
+            } else {
+                collect = originalItems.stream()
+                        .filter(i -> i.getCategoria().toLowerCase().contains(strSearch))
+                        .collect(Collectors.toList());
+            }
+            releases.addAll(collect);
+        }
+        notifyDataSetChanged();
     }
 }

@@ -22,7 +22,7 @@ import javax.xml.parsers.DocumentBuilderFactory;
 
 public class CalendarReader extends AsyncTask<Void, Void, Void> {
 
-    private ReleaseAdapter releaseAdapter;
+    private static ReleaseAdapter releaseAdapter;
     private final RecyclerView recyclerView;
     private final Context context;
     private ArrayList<Release> releases;
@@ -35,6 +35,9 @@ public class CalendarReader extends AsyncTask<Void, Void, Void> {
         this.context = context;
     }
 
+    public static void categoryFilter(String s) {
+        releaseAdapter.filter(s, 1);
+    }
 
     @Override
     protected void onPreExecute() {

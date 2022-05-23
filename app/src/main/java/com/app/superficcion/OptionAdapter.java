@@ -56,36 +56,43 @@ public class OptionAdapter extends RecyclerView.Adapter<OptionAdapter.MyViewHold
             switch (optionList.get(position).getName()) {
                 case "TODO":
                     RSSReader.categoryFilter("");
+                    CalendarReader.categoryFilter("");
                     MainActivity.recyclerView.scrollToPosition(0);
                     Toast.makeText(context.getApplicationContext(), "Filtrando por: TODO", Toast.LENGTH_SHORT).show();
                     break;
                 case "MARVEL":
                     RSSReader.categoryFilter("marvel");
+                    CalendarReader.categoryFilter("marvel");
                     MainActivity.recyclerView.scrollToPosition(0);
                     Toast.makeText(context.getApplicationContext(), "Filtrando por: MARVEL", Toast.LENGTH_SHORT).show();
                     break;
                 case "DC":
                     RSSReader.categoryFilter("dc");
+                    CalendarReader.categoryFilter("dc");
                     MainActivity.recyclerView.scrollToPosition(0);
                     Toast.makeText(context.getApplicationContext(), "Filtrando por: DC", Toast.LENGTH_SHORT).show();
                     break;
                 case "STAR WARS":
                     RSSReader.categoryFilter("star wars");
+                    CalendarReader.categoryFilter("star wars");
                     MainActivity.recyclerView.scrollToPosition(0);
                     Toast.makeText(context.getApplicationContext(), "Filtrando por: STAR WARS", Toast.LENGTH_SHORT).show();
                     break;
                 case "SCI-FY/FANTASÍA":
                     RSSReader.categoryFilter("fantasía");
+                    CalendarReader.categoryFilter("fantasía");
                     MainActivity.recyclerView.scrollToPosition(0);
                     Toast.makeText(context.getApplicationContext(), "Filtrando por: SCI-FY/FANTASÍA", Toast.LENGTH_SHORT).show();
                     break;
                 case "ANIME":
                     RSSReader.categoryFilter("anime");
+                    CalendarReader.categoryFilter("anime");
                     MainActivity.recyclerView.scrollToPosition(0);
                     Toast.makeText(context.getApplicationContext(), "Filtrando por: ANIME", Toast.LENGTH_SHORT).show();
                     break;
                 case "CÓMIC":
                     RSSReader.categoryFilter("cómic");
+                    CalendarReader.categoryFilter("cómic");
                     MainActivity.recyclerView.scrollToPosition(0);
                     Toast.makeText(context.getApplicationContext(), "Filtrando por: CÓMIC", Toast.LENGTH_SHORT).show();
                     break;

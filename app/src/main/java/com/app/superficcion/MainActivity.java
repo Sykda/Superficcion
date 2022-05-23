@@ -23,7 +23,7 @@ public class MainActivity extends AppCompatActivity {
     private final ArrayList<Option> optionList = new ArrayList<>();
     private SearchView searchView;
     private ImageButton home, play, moreRead, calendar;
-    private OptionAdapter optionAdapter;
+    public static OptionAdapter optionAdapter;
 
     //Programamos el comportamiento del botón "atrás" de android.
     @Override
