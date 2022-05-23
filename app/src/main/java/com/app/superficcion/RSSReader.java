@@ -2,7 +2,6 @@ package com.app.superficcion;
 
 import android.content.Context;
 import android.os.AsyncTask;
-import android.util.Log;
 import android.widget.SearchView;
 
 import androidx.recyclerview.widget.LinearLayoutManager;

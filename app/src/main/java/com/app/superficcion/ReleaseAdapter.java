@@ -9,7 +9,6 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
-import androidx.core.text.HtmlCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.squareup.picasso.Picasso;
@@ -20,9 +19,9 @@ import java.util.stream.Collectors;
 
 public class ReleaseAdapter extends RecyclerView.Adapter<ReleaseAdapter.MyViewHolder> {
 
-    private ArrayList<Release> releases;
     private final ArrayList<Release> originalItems;
-    private Context context;
+    private final ArrayList<Release> releases;
+    private final Context context;
 
     //Constructor
     public ReleaseAdapter(ArrayList<Release> releases, Context context) {
@@ -58,24 +57,6 @@ public class ReleaseAdapter extends RecyclerView.Adapter<ReleaseAdapter.MyViewHo
         return releases.size();
     }
 
-    //Adaptador personalizado
-    public class MyViewHolder extends RecyclerView.ViewHolder {
-
-        TextView mTitulo, mDescripcion, mFecha, mCategoria;
-        ImageView mImagen;
-        CardView cardView;
-
-        public MyViewHolder(@NonNull View itemView) {
-            super(itemView);
-            mTitulo = itemView.findViewById(R.id.tituloId);
-            mDescripcion = itemView.findViewById(R.id.descripcionId);
-            mFecha = itemView.findViewById(R.id.fechaId);
-            mImagen = itemView.findViewById(R.id.imageViewId);
-            mCategoria = itemView.findViewById(R.id.categoriaId);
-            cardView = itemView.findViewById(R.id.cardViewNoticia);
-        }
-    }
-
     //Filtro
     public void filter(final String strSearch, int choice) {
 
@@ -97,5 +78,23 @@ public class ReleaseAdapter extends RecyclerView.Adapter<ReleaseAdapter.MyViewHo
             releases.addAll(collect);
         }
         notifyDataSetChanged();
+    }
+
+    //Adaptador personalizado
+    public class MyViewHolder extends RecyclerView.ViewHolder {
+
+        TextView mTitulo, mDescripcion, mFecha, mCategoria;
+        ImageView mImagen;
+        CardView cardView;
+
+        public MyViewHolder(@NonNull View itemView) {
+            super(itemView);
+            mTitulo = itemView.findViewById(R.id.tituloId);
+            mDescripcion = itemView.findViewById(R.id.descripcionId);
+            mFecha = itemView.findViewById(R.id.fechaId);
+            mImagen = itemView.findViewById(R.id.imageViewId);
+            mCategoria = itemView.findViewById(R.id.categoriaId);
+            cardView = itemView.findViewById(R.id.cardViewNoticia);
+        }
     }
 }

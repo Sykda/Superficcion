@@ -11,25 +11,14 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import org.w3c.dom.Document;
-import org.w3c.dom.Element;
-import org.w3c.dom.Node;
-import org.w3c.dom.NodeList;
-
-import java.io.InputStream;
-import java.net.HttpURLConnection;
-import java.net.URL;
 import java.util.ArrayList;
-
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
 
 public class CalendarActivity extends AppCompatActivity {
 
+    public static OptionAdapter optionAdapter;
+    private final ArrayList<Option> optionList = new ArrayList<>();
     private RecyclerView recyclerView, recyclerOpciones;
     private Toolbar wevViewToolbar;
-    private final ArrayList<Option> optionList = new ArrayList<>();
-    public static OptionAdapter optionAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,7 +33,7 @@ public class CalendarActivity extends AppCompatActivity {
         ab.setDisplayHomeAsUpEnabled(true);
         ab.setDisplayShowTitleEnabled(false);
 
-        recyclerView=findViewById(R.id.recycleView);
+        recyclerView = findViewById(R.id.recycleView);
 
         CalendarReader calendarReader = new CalendarReader(this, recyclerView);
         calendarReader.execute();

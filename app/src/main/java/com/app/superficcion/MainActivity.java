@@ -20,10 +20,10 @@ import java.util.ArrayList;
 public class MainActivity extends AppCompatActivity {
 
     public static RecyclerView recyclerView, recyclerOpciones;
+    public static OptionAdapter optionAdapter;
     private final ArrayList<Option> optionList = new ArrayList<>();
     private SearchView searchView;
     private ImageButton home, play, moreRead, calendar;
-    public static OptionAdapter optionAdapter;
 
     //Programamos el comportamiento del botón "atrás" de android.
     @Override

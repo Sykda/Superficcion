@@ -2,7 +2,6 @@ package com.app.superficcion;
 
 import android.content.Context;
 import android.os.AsyncTask;
-import android.util.Log;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -25,8 +24,8 @@ public class CalendarReader extends AsyncTask<Void, Void, Void> {
     private static ReleaseAdapter releaseAdapter;
     private final RecyclerView recyclerView;
     private final Context context;
-    private ArrayList<Release> releases;
     private final String direccion = "https://raw.githubusercontent.com/Sykda/xml_calendario/master/xml_calendario.xml";
+    private ArrayList<Release> releases;
     private URL url;
 
     //Constructor
@@ -98,9 +97,9 @@ public class CalendarReader extends AsyncTask<Void, Void, Void> {
                         } else if (atributos.getNodeName().equalsIgnoreCase("titulo")) {
                             release.setTitulo(atributos.getTextContent());
                         } else if (atributos.getNodeName().equalsIgnoreCase("imagen")) {
-                            if(atributos.getTextContent().isEmpty()){
+                            if (atributos.getTextContent().isEmpty()) {
                                 release.setImagen("https://c4.wallpaperflare.com/wallpaper/839/927/713/404-fon-error-404-not-found-wallpaper-thumb.jpg");
-                            }else{
+                            } else {
                                 release.setImagen(atributos.getTextContent());
                             }
 
