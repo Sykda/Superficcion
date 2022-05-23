@@ -95,21 +95,27 @@ public class CalendarReader extends AsyncTask<Void, Void, Void> {
                         } else if (atributos.getNodeName().equalsIgnoreCase("titulo")) {
                             release.setTitulo(atributos.getTextContent());
                         } else if (atributos.getNodeName().equalsIgnoreCase("imagen")) {
-                            release.setImagen(atributos.getTextContent());
+                            if(atributos.getTextContent().isEmpty()){
+                                release.setImagen("https://c4.wallpaperflare.com/wallpaper/839/927/713/404-fon-error-404-not-found-wallpaper-thumb.jpg");
+                            }else{
+                                release.setImagen(atributos.getTextContent());
+                            }
+
+
                         } else if (atributos.getNodeName().equalsIgnoreCase("descripcion")) {
                             release.setDescripcion(atributos.getTextContent());
                         }
                     }
                     this.releases.add(release);
+                    /*Logs
                     Log.d("categoria: ", release.getCategoria());
                     Log.d("fecha: ", release.getFecha());
                     Log.d("titulo: ", release.getTitulo());
                     Log.d("imagen: ", release.getImagen());
                     Log.d("descripcion: ", release.getDescripcion());
+                     */
                 }
             }
-
-
         }
     }
 }
