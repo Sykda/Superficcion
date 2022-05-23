@@ -2,6 +2,7 @@ package com.app.superficcion;
 
 import android.content.Context;
 import android.os.AsyncTask;
+import android.util.Log;
 import android.widget.SearchView;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -89,6 +90,7 @@ public class RSSReader extends AsyncTask<Void, Void, Void> implements SearchView
                             news.setmImagen(imagen);
 
                             String resume = getResumeFromDescription(node);
+                            Log.i("Descripcion", node);
                             news.setmDescripcion(resume);
                         } else if (actual.getNodeName().equalsIgnoreCase("pubDate")) {
                             news.setmFecha(formatDate(actual.getTextContent()));
@@ -99,6 +101,8 @@ public class RSSReader extends AsyncTask<Void, Void, Void> implements SearchView
 
                     }
                     this.news.add(news);
+
+
                 }
             }
         }
@@ -124,18 +128,25 @@ public class RSSReader extends AsyncTask<Void, Void, Void> implements SearchView
 
     //Sacamos la imagen desde la descripción
     public String getImageFromDescription(String string) {
-        String[] splitSRC = string.split("src=");
-        String[] splitCLASS = splitSRC[1].split("class");
-        String[] noLineFeed = splitCLASS[0].split("\n");
-        return noLineFeed[0]
-                .replace("\"", "")
-                .replace("\"", "")
-                .replace("/></p>", "");
+        if (string.contains("src")) {
+            String[] splitSRC = string.split("src=");
+            String[] splitCLASS = splitSRC[1].split("class");
+            String[] noLineFeed = splitCLASS[0].split("\n");
+            return noLineFeed[0]
+                    .replace("\"", "")
+                    .replace("\"", "")
+                    .replace("/></p>", "");
+        }
+        return null;
     }
 
     //Sacamos el resumen desde la descripción
     public String getResumeFromDescription(String string) {
         String[] splitPar = string.split("<p>");
+        if (splitPar[3].isEmpty()) {
+            return "¡¡Entra para ver la noticia!!";
+        }
+
         String resume = splitPar[3].replace("</p>", "");
         String[] limitedWords = resume.split(" ");
         ArrayList<String> limited = new ArrayList<>();
