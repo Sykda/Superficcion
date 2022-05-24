@@ -40,7 +40,9 @@ public class RSSReader extends AsyncTask<Void, Void, Void> implements SearchView
     }
 
     public static void categoryFilter(String s) {
-        newsAdapter.filter(s, 1);
+        if (newsAdapter != null) {
+            newsAdapter.filter(s, 1);
+        }
     }
 
     @Override

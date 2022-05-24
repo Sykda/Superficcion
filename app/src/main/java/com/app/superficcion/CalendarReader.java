@@ -35,7 +35,9 @@ public class CalendarReader extends AsyncTask<Void, Void, Void> {
     }
 
     public static void categoryFilter(String s) {
-        releaseAdapter.filter(s, 1);
+        if (releaseAdapter != null) {
+            releaseAdapter.filter(s, 1);
+        }
     }
 
     @Override
