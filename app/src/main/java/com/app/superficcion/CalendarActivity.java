@@ -16,8 +16,8 @@ import java.util.ArrayList;
 public class CalendarActivity extends AppCompatActivity {
 
     public static OptionAdapter optionAdapter;
+    public static RecyclerView recyclerView, recyclerOpciones;
     private final ArrayList<Option> optionList = new ArrayList<>();
-    private RecyclerView recyclerView, recyclerOpciones;
     private Toolbar wevViewToolbar;
 
     @Override
