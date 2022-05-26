@@ -113,7 +113,6 @@ public class OptionAdapter extends RecyclerView.Adapter<OptionAdapter.MyViewHold
             super(view);
             opcion_id = view.findViewById(R.id.opcion_id);
             cardViewOpciones = view.findViewById(R.id.cardViewOpciones);
-
         }
     }
 }
