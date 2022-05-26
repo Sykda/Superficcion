@@ -24,7 +24,7 @@ public class CalendarReader extends AsyncTask<Void, Void, Void> {
     private static ReleaseAdapter releaseAdapter;
     private final RecyclerView recyclerView;
     private final Context context;
-    private final String direccion = "https://raw.githubusercontent.com/Sykda/xml_calendario/master/xml_calendario.xml";
+    private final String direccion = "https://raw.githubusercontent.com/Adonis199311/CalendarioSF/main/Calendario";
     private ArrayList<Release> releases;
     private URL url;
 
