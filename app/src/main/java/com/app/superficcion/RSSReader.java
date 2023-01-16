@@ -16,6 +16,7 @@ import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -141,7 +142,8 @@ public class RSSReader extends AsyncTask<Void, Void, Void> implements SearchView
     //Sacamos el resumen desde la descripción
     public String getResumeFromDescription(String string) {
         String[] splitPar = string.split("<p>");
-        if (splitPar[3].isEmpty()) {
+
+        if (splitPar.length < 4 || splitPar[3].isEmpty()) {
             return "¡¡Entra para ver la noticia!!";
         }
 
