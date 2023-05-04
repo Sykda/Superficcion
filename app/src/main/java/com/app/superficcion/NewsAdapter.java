@@ -17,7 +17,6 @@ import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.MyViewHolder> {
 
@@ -30,7 +29,12 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.MyViewHolder> 
         this.news = news;
         this.context = context;
         this.originalItems = new ArrayList<>();
-        originalItems.addAll(news);
+        try {
+            originalItems.addAll(news);
+        } catch (Exception e) {
+            System.out.println("Cannot read from the website");
+        }
+
     }
 
     @NonNull
@@ -45,46 +49,55 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.MyViewHolder> 
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
 
         News news = this.news.get(position);
-        holder.mTitulo.setText(HtmlCompat.fromHtml(news.getmTitulo(), HtmlCompat.FROM_HTML_MODE_LEGACY));
-        holder.mDescripcion.setText(HtmlCompat.fromHtml(news.getmDescripcion(), HtmlCompat.FROM_HTML_MODE_LEGACY));
-        holder.mFecha.setText(HtmlCompat.fromHtml(news.getmFecha(), HtmlCompat.FROM_HTML_MODE_LEGACY));
-        holder.mCategoria.setText(HtmlCompat.fromHtml(news.getmCategoria(), HtmlCompat.FROM_HTML_MODE_LEGACY));
+        holder.mTitulo.setText(HtmlCompat.fromHtml(news.getTitle(), HtmlCompat.FROM_HTML_MODE_LEGACY));
+        holder.mDescripcion.setText(HtmlCompat.fromHtml(news.getDescription(), HtmlCompat.FROM_HTML_MODE_LEGACY));
+        holder.mFecha.setText(HtmlCompat.fromHtml(news.getDate(), HtmlCompat.FROM_HTML_MODE_LEGACY));
+        holder.mCategoria.setText(HtmlCompat.fromHtml(news.getCategory(), HtmlCompat.FROM_HTML_MODE_LEGACY));
 
-        Picasso.get().load(news.getmImagen()).into(holder.mImagen);
+        Picasso.get().load(news.getImage()).into(holder.mImagen);
 
         holder.cardView.setOnClickListener((View v) -> {
             Intent intent = new Intent(context, MyWebView.class);
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-            intent.putExtra("Enlace", news.getmEnlace());
+            intent.putExtra("Enlace", news.getLink());
             context.startActivity(intent);
         });
     }
 
     @Override
     public int getItemCount() {
-        return news.size();
+        try {
+            return news.size();
+        } catch (Exception e) {
+            return 0;
+        }
     }
 
-    //Filtro
-    public void filter(final String strSearch, int choice) {
+    //Filter
+    public void filter(String strSearch, int choice) {
+        String searchQuery = strSearch.toLowerCase();
 
-        if (strSearch.length() == 0) {
+        if (searchQuery.isEmpty()) {
             news.clear();
             news.addAll(originalItems);
         } else {
-            news.clear();
-            List<News> collect;
-            if (choice == 0) {
-                collect = originalItems.stream()
-                        .filter(i -> i.getmTitulo().toLowerCase().contains(strSearch))
-                        .collect(Collectors.toList());
-            } else {
-                collect = originalItems.stream()
-                        .filter(i -> i.getmCategoria().toLowerCase().contains(strSearch))
-                        .collect(Collectors.toList());
+            List<News> filteredList = new ArrayList<>();
+
+            for (News newsItem : originalItems) {
+                String title = newsItem.getTitle().toLowerCase();
+                String category = newsItem.getCategory().toLowerCase();
+
+                if (choice == 0 && title.contains(searchQuery)) {
+                    filteredList.add(newsItem);
+                } else if (choice == 1 && category.contains(searchQuery)) {
+                    filteredList.add(newsItem);
+                }
             }
-            news.addAll(collect);
+
+            news.clear();
+            news.addAll(filteredList);
         }
+
         notifyDataSetChanged();
     }
 

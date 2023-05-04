@@ -15,7 +15,6 @@ public class SplashActivity extends AppCompatActivity {
         setContentView(R.layout.activity_splash);
         getWindow().setStatusBarColor(Window.getDefaultFeatures(this));
 
-        //Creamos un hilo para mostrar la pantalla de inicio y acabamos la activity
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {

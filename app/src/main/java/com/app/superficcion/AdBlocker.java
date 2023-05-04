@@ -7,12 +7,9 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.webkit.WebResourceResponse;
 
-import androidx.annotation.WorkerThread;
-
 import java.io.BufferedReader;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -20,7 +17,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 @SuppressWarnings("deprecation")
-public class AdBlocker {
+class AdBlocker {
 
     private static final String AD_HOSTS_FILE = "host.txt";
     private static final Set<String> AD_HOSTS = new HashSet<>();
@@ -39,26 +36,23 @@ public class AdBlocker {
         }.execute();
     }
 
-    @WorkerThread
     private static void loadFromAssets(Context context) throws IOException {
-        InputStream stream = context.getAssets().open(AD_HOSTS_FILE);
-        InputStreamReader inputStreamReader = new InputStreamReader(stream);
-        BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
-        String line;
-        while ((line = bufferedReader.readLine()) != null) AD_HOSTS.add(line);
-        bufferedReader.close();
-        inputStreamReader.close();
-        stream.close();
+        try (BufferedReader reader = new BufferedReader(new InputStreamReader(context.getAssets().open(AD_HOSTS_FILE)))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                AD_HOSTS.add(line);
+            }
+        }
     }
 
-    public static boolean isAd(String url) {
+    public static boolean isAd(Context context, String url) {
         try {
+            loadFromAssets(context);
             return isAdHost(getHost(url)) || AD_HOSTS.contains(Uri.parse(url).getLastPathSegment());
-        } catch (MalformedURLException e) {
+        } catch (Exception e) {
             Log.d("Ind", e.toString());
             return false;
         }
-
     }
 
     private static boolean isAdHost(String host) {

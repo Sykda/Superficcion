@@ -21,18 +21,23 @@ public class MyWebView extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        // Set the status bar color to the default color of the window
         getWindow().setStatusBarColor(Window.getDefaultFeatures(this));
+
         setContentView(R.layout.activity_web_view);
+
+        // Initialize the AdBlocker library
         AdBlocker.init(this);
 
-        //Definimos la barra de herramientas.
+        // Set up the toolbar
         wevViewToolbar = findViewById(R.id.webViewToolbar);
         setSupportActionBar(wevViewToolbar);
         final ActionBar ab = getSupportActionBar();
         ab.setDisplayHomeAsUpEnabled(true);
         ab.setDisplayShowTitleEnabled(false);
 
-        //Definimos el webview donde se refleja la web
+        // Set up the WebView
         webView = findViewById(R.id.webView);
         Bundle bundle = getIntent().getExtras();
         String url = bundle.getString("Enlace");
@@ -43,20 +48,25 @@ public class MyWebView extends AppCompatActivity {
         webSettings.setLoadsImagesAutomatically(true);
         webSettings.setSupportZoom(true);
 
-        webView.setWebViewClient(new MyBrowser());//HABLAR DE ANUNCIOS
+        webView.setWebViewClient(new MyBrowser(true));
         webView.clearCache(true);
         webView.clearHistory();
+
+        // Set the force dark strategy for the WebView if it is supported
         if (WebViewFeature.isFeatureSupported(WebViewFeature.FORCE_DARK_STRATEGY)) {
             WebSettingsCompat.setForceDark(webView.getSettings(), WebSettingsCompat.FORCE_DARK_ON);
         }
+
         webView.loadUrl(url);
+
     }
+
 
     //Boton "<-" en la barra de herramientas
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-            case android.R.id.home: //hago un case por si en un futuro agrego mas opciones
+            case android.R.id.home:
                 Log.i("ActionBar", "Atrás!");
                 finish();
                 return true;

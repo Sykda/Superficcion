@@ -12,10 +12,6 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Material3.Dark.NoActionBar">
         <activity
-            android:name=".CalendarActivity"
-            android:screenOrientation="portrait"
-            android:exported="false" />
-        <activity
             android:name=".SplashActivity"
             android:exported="true"
             android:screenOrientation="portrait">

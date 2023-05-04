@@ -1,20 +1,38 @@
 package com.app.superficcion;
 
+import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
-import android.widget.Toast;
 
 public class CheckNetwork {
-    public static void isInternetAvailable(Context context){
-        ConnectivityManager cm = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+
+    private AlertDialog dialog;
+
+    public void isInternetAvailable(Activity activity) {
+        ConnectivityManager cm = (ConnectivityManager) activity.getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
 
-        if (activeNetwork != null && activeNetwork.isConnected()) {
-            // Hay conexión a internet
-        } else {
-            // No hay conexión a internet
-            Toast.makeText(context.getApplicationContext(), "No hay conexión a internet", Toast.LENGTH_SHORT).show();
+        if (activeNetwork == null || !activeNetwork.isConnected()) {
+            AlertDialog.Builder builder = new AlertDialog.Builder(activity);
+            builder.setMessage("No hay conexión a internet")
+                    .setCancelable(false)
+                    .setPositiveButton("Salir", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+                            activity.finish();
+                        }
+                    });
+            AlertDialog alert = builder.create();
+            alert.show();
+        }
+    }
+
+    public void dismissDialog() {
+        if (dialog != null) {
+            dialog.dismiss();
+            dialog = null;
         }
     }
 }

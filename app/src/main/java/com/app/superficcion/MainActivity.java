@@ -8,7 +8,6 @@ import android.view.View;
 import android.view.Window;
 import android.widget.ImageButton;
 import android.widget.SearchView;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -19,13 +18,19 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
-    public static RecyclerView recyclerView, recyclerOpciones;
+    public static RecyclerView recyclerView, recyclerOptions;
+
     public static OptionAdapter optionAdapter;
+
     private final ArrayList<Option> optionList = new ArrayList<>();
+
     private SearchView searchView;
+
     private ImageButton home, play, moreRead, calendar;
 
-    //Programamos el comportamiento del botón "atrás" de android.
+    private CheckNetwork checkNetwork;
+
+    //Button back
     @Override
     public void onBackPressed() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
@@ -45,33 +50,39 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        // Set the layout
         setContentView(R.layout.activity_main);
+
+        // Set the status bar color
         getWindow().setStatusBarColor(Window.getDefaultFeatures(this));
 
-        //Comprobamos si hay conexión a internet
-        CheckNetwork.isInternetAvailable(this);
+        // Check internet connection
+        checkNetwork = new CheckNetwork();
+        checkNetwork.isInternetAvailable(this);
 
-        //Todas las referencias
+        // Find the views by their IDs
         home = findViewById(R.id.ibHome);
         play = findViewById(R.id.ibPlay);
         moreRead = findViewById(R.id.ibMoreRead);
-        calendar = findViewById(R.id.ibCalendar);
         searchView = findViewById(R.id.searchView);
         recyclerView = findViewById(R.id.recycleView);
 
-        //Instancia y lanzamiento de la clase RSSReader
+        // Create an instance of the RSSReader class and execute it
         RSSReader RSSReader = new RSSReader(getApplicationContext(), recyclerView, searchView);
         RSSReader.execute();
 
-        //
+        // Create the optionAdapter and set it to the recyclerOptions
         optionAdapter = new OptionAdapter(MainActivity.this, optionList);
-        recyclerOpciones = findViewById(R.id.recyclerOpciones);
+        recyclerOptions = findViewById(R.id.recyclerOpciones);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(MainActivity.this, LinearLayoutManager.HORIZONTAL, false);
-        recyclerOpciones.setLayoutManager(linearLayoutManager);
-        recyclerOpciones.setAdapter(optionAdapter);
+        recyclerOptions.setLayoutManager(linearLayoutManager);
+        recyclerOptions.setAdapter(optionAdapter);
+
+        // Prepare the data for the options
         prepareOptionsData();
 
-        //Programamos el comportamiento de los botones
+        // Set onClickListeners for the ImageButtons
         home.setOnClickListener((View v) ->
                 startActivity(new Intent(getApplicationContext(), MainActivity.class),
                         ActivityOptions.makeSceneTransitionAnimation(MainActivity.this).toBundle())
@@ -90,10 +101,9 @@ public class MainActivity extends AppCompatActivity {
             intent.putExtra("Enlace", "https://super-ficcion.com/lo-mas-leido-super-ficcion/");
             startActivity(intent);
         });
-
-        calendar.setOnClickListener((View v) -> startActivity(new Intent(getApplicationContext(), CalendarActivity.class)));
     }
 
+    // Prepare the data for the options
     private void prepareOptionsData() {
         Option opcion = new Option(1, "TODO");
         optionList.add(opcion);
@@ -109,5 +119,11 @@ public class MainActivity extends AppCompatActivity {
         optionList.add(opcion);
         opcion = new Option(7, "CÓMIC");
         optionList.add(opcion);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        checkNetwork.dismissDialog();
     }
 }

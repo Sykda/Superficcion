@@ -16,7 +16,8 @@ import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -81,24 +82,24 @@ public class RSSReader extends AsyncTask<Void, Void, Void> implements SearchView
                     for (int j = 0; j < itemChilds.getLength(); j++) {
                         Node actual = itemChilds.item(j);
                         if (actual.getNodeName().equalsIgnoreCase("title")) {
-                            news.setmTitulo(actual.getTextContent());
+                            news.setTitle(actual.getTextContent());
                         } else if (actual.getNodeName().equalsIgnoreCase("link")) {
-                            news.setmEnlace(actual.getTextContent());
+                            news.setLink(actual.getTextContent());
                         } else if (actual.getNodeName().equalsIgnoreCase("description")) {
                             Node imagechild = actual.getFirstChild();
                             String node = imagechild.getTextContent();
 
                             String imagen = getImageFromDescription(node);
-                            news.setmImagen(imagen);
+                            news.setImage(imagen);
 
                             String resume = getResumeFromDescription(node);
-                            news.setmDescripcion(resume);
+                            news.setDescription(resume);
                         } else if (actual.getNodeName().equalsIgnoreCase("pubDate")) {
-                            news.setmFecha(formatDate(actual.getTextContent()));
+                            news.setDate(formatDate(actual.getTextContent()));
                         }
 
                         String categoria = itemChilds.item(9).getTextContent();
-                        news.setmCategoria(categoria);
+                        news.setCategory(categoria);
 
                     }
                     this.news.add(news);
@@ -164,55 +165,41 @@ public class RSSReader extends AsyncTask<Void, Void, Void> implements SearchView
         return str + "...";
     }
 
-    //Traducimos la fecha a español y nos quedamos con los datos que nos interesan
+    // Formats a date string in the format "EEE, dd MMM yyyy HH:mm:ss zzz" into a human-readable format.
     public String formatDate(String string) {
         String[] splitDate = string.split(" ");
-        //Day
-        if (splitDate[0].equalsIgnoreCase("Mon,")) {
-            splitDate[0] = "Lunes,";
-        } else if (splitDate[0].equalsIgnoreCase("Tue,")) {
-            splitDate[0] = "Martes,";
-        } else if (splitDate[0].equalsIgnoreCase("Wed,")) {
-            splitDate[0] = "Miércoles,";
-        } else if (splitDate[0].equalsIgnoreCase("Thu,")) {
-            splitDate[0] = "Jueves,";
-        } else if (splitDate[0].equalsIgnoreCase("Fri,")) {
-            splitDate[0] = "Viernes,";
-        } else if (splitDate[0].equalsIgnoreCase("Sat,")) {
-            splitDate[0] = "Sábado,";
-        } else if (splitDate[0].equalsIgnoreCase("Sun,")) {
-            splitDate[0] = "Domingo,";
-        }
-        //Month
-        if (splitDate[2].equalsIgnoreCase("Jan")) {
-            splitDate[2] = "Enero";
-        } else if (splitDate[2].equalsIgnoreCase("Feb")) {
-            splitDate[2] = "Febrero";
-        } else if (splitDate[2].equalsIgnoreCase("Mar")) {
-            splitDate[2] = "Marzo";
-        } else if (splitDate[2].equalsIgnoreCase("Apr")) {
-            splitDate[2] = "Abril";
-        } else if (splitDate[2].equalsIgnoreCase("May")) {
-            splitDate[2] = "Mayo";
-        } else if (splitDate[2].equalsIgnoreCase("Jun")) {
-            splitDate[2] = "Junio";
-        } else if (splitDate[2].equalsIgnoreCase("Jul")) {
-            splitDate[2] = "Julio";
-        } else if (splitDate[2].equalsIgnoreCase("Aug")) {
-            splitDate[2] = "Agosto";
-        } else if (splitDate[2].equalsIgnoreCase("Sep")) {
-            splitDate[2] = "Septiembre";
-        } else if (splitDate[2].equalsIgnoreCase("Oct")) {
-            splitDate[2] = "Octubre";
-        } else if (splitDate[2].equalsIgnoreCase("Nov")) {
-            splitDate[2] = "Noviembre";
-        } else if (splitDate[2].equalsIgnoreCase("Dec")) {
-            splitDate[2] = "Diciembre";
-        }
+
+        Map<String, String> daysOfWeek = new HashMap<>();
+        daysOfWeek.put("Mon,", "Lunes,");
+        daysOfWeek.put("Tue,", "Martes,");
+        daysOfWeek.put("Wed,", "Miércoles,");
+        daysOfWeek.put("Thu,", "Jueves,");
+        daysOfWeek.put("Fri,", "Viernes,");
+        daysOfWeek.put("Sat,", "Sábado,");
+        daysOfWeek.put("Sun,", "Domingo,");
+
+        Map<String, String> months = new HashMap<>();
+        months.put("Jan", "Enero");
+        months.put("Feb", "Febrero");
+        months.put("Mar", "Marzo");
+        months.put("Apr", "Abril");
+        months.put("May", "Mayo");
+        months.put("Jun", "Junio");
+        months.put("Jul", "Julio");
+        months.put("Aug", "Agosto");
+        months.put("Sep", "Septiembre");
+        months.put("Oct", "Octubre");
+        months.put("Nov", "Noviembre");
+        months.put("Dec", "Diciembre");
+
+        splitDate[0] = daysOfWeek.getOrDefault(splitDate[0], splitDate[0]);
+        splitDate[2] = months.getOrDefault(splitDate[2], splitDate[2]);
+
         return splitDate[0] + " " + splitDate[1] + " " + splitDate[2] + " " + splitDate[3];
     }
 
-    //Métodos para la búsqueda implementados por OnQueryTextListener
+
+    // Filters the news list based on a search string and choice of category
     @Override
     public boolean onQueryTextSubmit(String s) {
         return false;

@@ -13,6 +13,11 @@ import java.util.Map;
 public class MyBrowser extends WebViewClient {
 
     private final Map<String, Boolean> loadedUrls = new HashMap<>();
+    private final boolean blockAds;
+
+    public MyBrowser(boolean blockAds) {
+        this.blockAds = blockAds;
+    }
 
     @Override
     public boolean shouldOverrideUrlLoading(WebView view, String url) {
@@ -25,12 +30,27 @@ public class MyBrowser extends WebViewClient {
     public WebResourceResponse shouldInterceptRequest(WebView view, String url) {
         boolean ad;
         if (!loadedUrls.containsKey(url)) {
-            ad = AdBlocker.isAd(url);
+            ad = AdBlocker.isAd(view.getContext(), url);
             loadedUrls.put(url, ad);
         } else {
             ad = loadedUrls.get(url);
         }
-        return ad ? AdBlocker.createEmptyResource() :
-                super.shouldInterceptRequest(view, url);
+        if (ad && blockAds) {
+            // Load an empty resource instead of the ad
+            return AdBlocker.createEmptyResource();
+        } else {
+            // Let the WebView load the original resource
+            return super.shouldInterceptRequest(view, url);
+        }
+    }
+
+    @Override
+    public void onPageFinished(WebView view, String url) {
+        super.onPageFinished(view, url);
+
+        view.loadUrl("javascript:(function() { " +
+                "var adDiv = document.getElementById('video-evo-player'); " +
+                "if (adDiv) { adDiv.remove(); } " +
+                "})()");
     }
 }

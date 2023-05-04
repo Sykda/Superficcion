@@ -2,53 +2,53 @@ package com.app.superficcion;
 
 public class News {
 
-    String mTitulo, mEnlace, mDescripcion, mImagen, mFecha, mCategoria;
+    String mTitle, mLink, mDescription, mImage, mDate, mCategory;
 
-    public String getmTitulo() {
-        return mTitulo;
+    public String getTitle() {
+        return mTitle;
     }
 
-    public void setmTitulo(String mTitulo) {
-        this.mTitulo = mTitulo;
+    public void setTitle(String mTitle) {
+        this.mTitle = mTitle;
     }
 
-    public String getmEnlace() {
-        return mEnlace;
+    public String getLink() {
+        return mLink;
     }
 
-    public void setmEnlace(String mEnlace) {
-        this.mEnlace = mEnlace;
+    public void setLink(String mLink) {
+        this.mLink = mLink;
     }
 
-    public String getmDescripcion() {
-        return mDescripcion;
+    public String getDescription() {
+        return mDescription;
     }
 
-    public void setmDescripcion(String mDescripcion) {
-        this.mDescripcion = mDescripcion;
+    public void setDescription(String mDescription) {
+        this.mDescription = mDescription;
     }
 
-    public String getmImagen() {
-        return mImagen;
+    public String getImage() {
+        return mImage;
     }
 
-    public void setmImagen(String mImagen) {
-        this.mImagen = mImagen;
+    public void setImage(String mImage) {
+        this.mImage = mImage;
     }
 
-    public String getmFecha() {
-        return mFecha;
+    public String getDate() {
+        return mDate;
     }
 
-    public void setmFecha(String mFecha) {
-        this.mFecha = mFecha;
+    public void setDate(String mDate) {
+        this.mDate = mDate;
     }
 
-    public String getmCategoria() {
-        return mCategoria;
+    public String getCategory() {
+        return mCategory;
     }
 
-    public void setmCategoria(String mCategoria) {
-        this.mCategoria = mCategoria;
+    public void setCategory(String mCategory) {
+        this.mCategory = mCategory;
     }
 }
