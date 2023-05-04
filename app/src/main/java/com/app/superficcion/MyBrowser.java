@@ -33,7 +33,7 @@ public class MyBrowser extends WebViewClient {
             ad = AdBlocker.isAd(view.getContext(), url);
             loadedUrls.put(url, ad);
         } else {
-            ad = loadedUrls.get(url);
+            ad = Boolean.TRUE.equals(loadedUrls.get(url));
         }
         if (ad && blockAds) {
             // Load an empty resource instead of the ad
@@ -49,8 +49,10 @@ public class MyBrowser extends WebViewClient {
         super.onPageFinished(view, url);
 
         view.loadUrl("javascript:(function() { " +
-                "var adDiv = document.getElementById('video-evo-player'); " +
-                "if (adDiv) { adDiv.remove(); } " +
+                "var codeBlocks = document.querySelectorAll('div[class*=\"code-block\"]');" +
+                "for (var i = 0; i < codeBlocks.length; i++) {" +
+                "   codeBlocks[i].remove();" +
+                "}" +
                 "})()");
     }
 }

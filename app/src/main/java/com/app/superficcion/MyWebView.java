@@ -1,5 +1,6 @@
 package com.app.superficcion;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
@@ -15,9 +16,7 @@ import androidx.webkit.WebViewFeature;
 
 public class MyWebView extends AppCompatActivity {
 
-    private WebView webView;
-    private Toolbar wevViewToolbar;
-
+    @SuppressLint({"RequiresFeature", "SetJavaScriptEnabled"})
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,14 +30,16 @@ public class MyWebView extends AppCompatActivity {
         AdBlocker.init(this);
 
         // Set up the toolbar
-        wevViewToolbar = findViewById(R.id.webViewToolbar);
+        Toolbar wevViewToolbar = findViewById(R.id.webViewToolbar);
         setSupportActionBar(wevViewToolbar);
         final ActionBar ab = getSupportActionBar();
-        ab.setDisplayHomeAsUpEnabled(true);
-        ab.setDisplayShowTitleEnabled(false);
+        if (ab != null) {
+            ab.setDisplayHomeAsUpEnabled(true);
+            ab.setDisplayShowTitleEnabled(false);
+        }
 
         // Set up the WebView
-        webView = findViewById(R.id.webView);
+        WebView webView = findViewById(R.id.webView);
         Bundle bundle = getIntent().getExtras();
         String url = bundle.getString("Enlace");
 
@@ -46,7 +47,6 @@ public class MyWebView extends AppCompatActivity {
         webSettings.setDomStorageEnabled(true);
         webSettings.setJavaScriptEnabled(true);
         webSettings.setLoadsImagesAutomatically(true);
-        webSettings.setSupportZoom(true);
 
         webView.setWebViewClient(new MyBrowser(true));
         webView.clearCache(true);
@@ -65,13 +65,11 @@ public class MyWebView extends AppCompatActivity {
     //Boton "<-" en la barra de herramientas
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case android.R.id.home:
-                Log.i("ActionBar", "Atrás!");
-                finish();
-                return true;
-            default:
-                return super.onOptionsItemSelected(item);
+        if (item.getItemId() == android.R.id.home) {
+            Log.i("ActionBar", "Atrás!");
+            finish();
+            return true;
         }
+        return super.onOptionsItemSelected(item);
     }
 }
