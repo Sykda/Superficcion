@@ -49,13 +49,7 @@ public class MainActivity extends AppCompatActivity {
         getWindow().setStatusBarColor(Window.getDefaultFeatures(this));
 
         //Comprobamos si hay conexión a internet
-        if (!CheckNetwork.isInternetAvailable(this)) {
-            Toast.makeText(this, "Error: No Tienes Conexión a Internet", Toast.LENGTH_LONG).show();
-            Intent intent = new Intent(Intent.ACTION_MAIN);
-            intent.addCategory(Intent.CATEGORY_HOME);
-            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-            startActivity(intent);
-        }
+        CheckNetwork.isInternetAvailable(this);
 
         //Todas las referencias
         home = findViewById(R.id.ibHome);

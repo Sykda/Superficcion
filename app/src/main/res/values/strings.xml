@@ -5,13 +5,6 @@
     <string name="lay_date">Tue, 29 Mar 2022</string>
     <string name="lay_catego">TextView</string>
     <string name="lay_todo">TODO</string>
-    <string name="op_todo">TODO</string>
-    <string name="op_marvel">MARVEL</string>
-    <string name="op_dc">DC</string>
-    <string name="op_star_wars">STAR WARS</string>
-    <string name="op_sci_fy_fantas_a">SCI-FY / FANTASÍA</string>
-    <string name="op_anime">ANIME</string>
-    <string name="op_c_mic">CÓMIC</string>
     <string name="op_calendar">op_calendar</string>
     <string name="op_home">op_home</string>
     <string name="op_games">op_games</string>

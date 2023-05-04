@@ -19,7 +19,6 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <Toolbar
-            android:id="@+id/toolbar"
             android:layout_width="220dp"
             android:layout_height="47dp"
             android:background="@drawable/banner"

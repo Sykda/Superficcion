@@ -3,28 +3,18 @@ package com.app.superficcion;
 import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
-import android.util.Log;
+import android.widget.Toast;
 
 public class CheckNetwork {
+    public static void isInternetAvailable(Context context){
+        ConnectivityManager cm = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
 
-    private static final String TAG = CheckNetwork.class.getSimpleName();
-
-    //Comprobamos si hay conexión a internet
-    public static boolean isInternetAvailable(Context context) {
-        NetworkInfo info = ((ConnectivityManager)
-                context.getSystemService(Context.CONNECTIVITY_SERVICE)).getActiveNetworkInfo();
-
-        if (info == null) {
-            Log.d(TAG, "no internet connection");
-            return false;
+        if (activeNetwork != null && activeNetwork.isConnected()) {
+            // Hay conexión a internet
         } else {
-            if (info.isConnected()) {
-                Log.d(TAG, " internet connection available...");
-                return true;
-            } else {
-                Log.d(TAG, " internet connection");
-                return true;
-            }
+            // No hay conexión a internet
+            Toast.makeText(context.getApplicationContext(), "No hay conexión a internet", Toast.LENGTH_SHORT).show();
         }
     }
 }
