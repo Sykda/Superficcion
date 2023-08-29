@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <h1><img src="app/src/main/res/drawable/banner.png" alt="Super-Ficción App" style="max-width: 200px;"></h1>
+    <h1><img src="app/src/main/res/drawable-v24/readmesplash.jpeg" alt="Logotipo de Super-Ficción App" style="width: 400px; display: block; margin: 0 auto;"></h1>
 </head>
 <body>
     <h2>Super-Ficción App</h2>
