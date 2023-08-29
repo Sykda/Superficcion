@@ -5,7 +5,7 @@
 </head>
 <body>
     <h2>Super-Ficción App</h2>
-    <p>Bienvenido a la aplicación Super-Ficción. Esta aplicación te permite acceder al contenido del sitio web "Super-Ficción" relacionado con la ciencia ficción y la fantasía.</p>
+    <p>Bienvenido a la aplicación Super-Ficción. El objetivo es permitir a los usuarios acceder y visualizar el contenido del sitio web "Super-Ficción", una fuente popular de noticias y artículos relacionados con el mundo de la ciencia ficción y la fantasía. El objetivo principal del proyecto es proporcionar a los usuarios de la página una experiencia optimizada para dispositivos móviles, permitiéndoles acceder a los últimos artículos, reseñas y noticias relevantes de una manera intuitiva y eficiente.</p>
     <h2>Instrucciones de Instalación</h2>
     <ol>
         <li>Descarga el archivo APK de la aplicación desde <a href="https://drive.google.com/file/d/17u9nCuBL_COX3uCGTQLS3DDK6ZYNySjy/view?usp=drive_link" target="_blank">este enlace</a>. </li>
