@@ -20,8 +20,8 @@
         <li>Conexión a Internet para acceder al contenido de "Super-Ficción".</li>
     </ul>
     <h2>Nota Importante</h2>
-    <p>Debido a que la aplicación se distribuye fuera de la Google Play Store, es posible que necesites habilitar la instalación de aplicaciones desde fuentes desconocidas en tu dispositivo. Asegúrate de seguir las instrucciones de seguridad adecuadas al realizar este paso.</p>
+    <p>Debido a que la aplicación actualmente se distribuye fuera de la Google Play Store, es posible que necesites habilitar la instalación de aplicaciones desde fuentes desconocidas en tu dispositivo. Asegúrate de seguir las instrucciones de seguridad adecuadas al realizar este paso.</p>
     <h2>Contacto</h2>
-    <p>Si tienes preguntas o comentarios, no dudes en ponerte en contacto con nosotros en contacto@superficcionapp.com.</p>
+    <p>Si tienes preguntas o comentarios, no dudes en ponerte en contacto con nosotros.</p>
 </body>
 </html>
